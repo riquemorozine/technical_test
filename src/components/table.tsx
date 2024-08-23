@@ -1,11 +1,5 @@
+import { IBook } from "../domains/IBook";
 import "../sass/components/table/_table.scss";
-
-interface IBook {
-  id: string;
-  name: string;
-  authorId: string;
-  pages: number;
-}
 
 interface ITableProps {
   headers: string[];
@@ -30,11 +24,11 @@ export default function Table({ data }: ITableProps) {
       </thead>
 
       <tbody>
-        {data.map(({ id, name, authorId, pages }: IBook) => (
+        {data.map(({ id, name, author_id, pages }: IBook) => (
           <tr key={id}>
             <input type="checkbox" />
             <td>{name}</td>
-            <td>{authorId}</td>
+            <td>{author_id}</td>
             <td>{pages}</td>
             <td>
               <button className="viewButton" onClick={() => openBook(id)}>

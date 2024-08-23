@@ -1,22 +1,18 @@
+import { useEffect } from "react";
 import Table from "./components/table";
+import { useBook } from "./contexts/BookContext";
 import "./sass/pages/_app.scss";
 
 function App() {
+  const { books, setBook } = useBook();
+
+  useEffect(() => {
+    setBook([{ author_id: "123", id: "123", name: "um livro ai", pages: 12 }]);
+  }, []);
+
   return (
     <>
-      <main>
-        <Table
-          data={[
-            { name: "teste", authorId: "124", id: "123", pages: 12 },
-            { name: "teste", authorId: "124", id: "124", pages: 10 },
-            { name: "teste", authorId: "124", id: "125", pages: 12 },
-            { name: "teste", authorId: "124", id: "126", pages: 10 },
-            { name: "teste", authorId: "124", id: "127", pages: 12 },
-            { name: "teste", authorId: "124", id: "128", pages: 10 },
-          ]}
-          headers={["Book Name", "Author"]}
-        />
-      </main>
+      <Table data={books} headers={["Book Name", "Author"]} />
     </>
   );
 }
