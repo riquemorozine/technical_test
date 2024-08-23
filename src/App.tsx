@@ -1,9 +1,18 @@
-import "./styles/pages/_app.scss";
+import Table from "./components/table";
+import "./sass/pages/_app.scss";
 
 function App() {
   return (
     <>
-      <div></div>
+      <main>
+        <Table
+          data={[
+            { name: "teste", authorId: "124", id: "123", pages: 12 },
+            { name: "teste", authorId: "124", id: "123", pages: 10 },
+          ]}
+          headers={["Book Name", "Author"]}
+        />
+      </main>
     </>
   );
 }

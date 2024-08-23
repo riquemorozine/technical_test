@@ -1,0 +1,26 @@
+.table {
+  border: 1px solid black;
+  text-align: center;
+
+  th {
+    border: 1px solid black;
+    padding: 20px;
+  }
+
+  td {
+    border: 1px solid black;
+    padding: 20px;
+  }
+
+  tr {
+    border: 1px solid black;
+
+    :first-child {
+      border: none;
+    }
+
+    :last-child {
+      border: none;
+    }
+  }
+}
