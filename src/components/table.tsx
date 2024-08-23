@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IBook } from "../domains/IBook";
 import "../sass/components/table/_table.scss";
 
@@ -7,6 +8,20 @@ interface ITableProps {
 }
 
 export default function Table({ data }: ITableProps) {
+  const [selectedBooks, setSelectedBooks] = useState<string[]>([]);
+
+  const setSelected = (id: string) => {
+    const findSomeSelected = selectedBooks.some(
+      (bookId: string) => bookId === id
+    );
+
+    if (findSomeSelected) {
+      setSelectedBooks(selectedBooks.filter((bookId: string) => bookId != id));
+    }
+
+    setSelectedBooks([...selectedBooks, id]);
+  };
+
   const openBook = (id: string) => {
     console.log(id);
   };
@@ -26,7 +41,9 @@ export default function Table({ data }: ITableProps) {
       <tbody>
         {data.map(({ id, name, author_id, pages }: IBook) => (
           <tr key={id}>
-            <input type="checkbox" />
+            <td>
+              <input type="checkbox" onChange={() => setSelected(id)} />
+            </td>
             <td>{name}</td>
             <td>{author_id}</td>
             <td>{pages}</td>

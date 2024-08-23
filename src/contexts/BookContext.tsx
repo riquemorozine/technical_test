@@ -8,6 +8,8 @@ export interface IBookContext {
   books: IBook[];
   setBook: (data: IBook[]) => void;
   getBooks: () => IBook[];
+  deleteBook: (id: string) => void;
+  addBook: (data: IBook) => void;
 }
 
 interface ModalProviderProps {
@@ -21,7 +23,7 @@ export const BookProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const book = new Book();
-    const fetchedBooks = book.fetchBooks();
+    const fetchedBooks = book.fetch();
 
     setBooks(fetchedBooks);
   }, []);
@@ -30,12 +32,32 @@ export const BookProvider: React.FC<ModalProviderProps> = ({ children }) => {
     setBooks(data);
   };
 
+  const deleteBook = (id: string): void => {
+    const book = new Book();
+
+    const newBooks = book.delete(id);
+    if (!newBooks) return;
+
+    setBook(newBooks);
+  };
+
+  const addBook = (data: IBook): void => {
+    const book = new Book();
+
+    const addedBook = book.add(data);
+    if (!addedBook) return;
+
+    setBook(addedBook);
+  };
+
   const getBooks = (): IBook[] => {
     return books;
   };
 
   return (
-    <BookContext.Provider value={{ setBook, getBooks, books }}>
+    <BookContext.Provider
+      value={{ setBook, getBooks, books, deleteBook, addBook }}
+    >
       {children}
     </BookContext.Provider>
   );

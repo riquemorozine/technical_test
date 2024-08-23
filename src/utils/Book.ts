@@ -1,7 +1,7 @@
 import { IBook } from "../domains/IBook";
 
 export class Book {
-  fetchBooks(): IBook[] {
+  fetch(): IBook[] {
     const books = localStorage.getItem("books");
 
     if (!books) {
@@ -19,23 +19,39 @@ export class Book {
     return JSON.parse(books);
   }
 
-  deleteBook(id: string): void {
+  delete(id: string): IBook[] | void {
     const books = localStorage.getItem("books");
 
     if (!books) return;
-
     const parsedBooks = JSON.parse(books);
+
+    const bookExist = parsedBooks.some((book: IBook) => book.id === id);
+    if (!bookExist) return;
+
     const deletedBook = parsedBooks.filter((book: IBook) => book.id != id);
 
     localStorage.setItem("books", JSON.stringify(deletedBook));
+
+    return deletedBook;
   }
 
-  addBook(data: IBook): void {
+  add(data: IBook): IBook[] | void {
     const books = localStorage.getItem("books");
 
     if (!books) return;
 
     const parsedBook = JSON.parse(books);
-    localStorage.setItem("books", JSON.stringify([...parsedBook, data]));
+
+    const isDuplicate = parsedBook.some(
+      (book: IBook) =>
+        book.author_id === data.author_id && book.name === data.name
+    );
+    if (isDuplicate) return;
+
+    const createdBook = [...parsedBook, data];
+
+    localStorage.setItem("books", JSON.stringify(createdBook));
+
+    return createdBook;
   }
 }
