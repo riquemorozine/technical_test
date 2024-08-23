@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 
-import { fetchBooks } from "../utils/fetchBooks";
+import { Book } from "../utils/Book";
 import { IBook } from "../domains/IBook";
 
 export interface IBookContext {
@@ -20,10 +20,11 @@ export const BookProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [books, setBooks] = useState<IBook[]>([]);
 
   useEffect(() => {
-    const fetchedBooks = fetchBooks();
+    const book = new Book();
+    const fetchedBooks = book.fetchBooks();
 
-    setBooks(fetchBooks);
-  }, []); // Pegar os livros do localstorage
+    setBooks(fetchedBooks);
+  }, []);
 
   const setBook = (data: IBook[]) => {
     setBooks(data);
