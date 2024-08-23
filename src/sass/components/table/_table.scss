@@ -2,25 +2,25 @@
   border: 1px solid black;
   text-align: center;
 
-  th {
-    border: 1px solid black;
-    padding: 20px;
-  }
-
-  td {
-    border: 1px solid black;
-    padding: 20px;
-  }
-
+  td,
+  th,
   tr {
     border: 1px solid black;
-
-    :first-child {
-      border: none;
-    }
-
-    :last-child {
-      border: none;
-    }
+    padding: 20px 50px;
   }
+
+  tr:nth-child(even) {
+    background-color: #d5d5d6;
+  }
+}
+
+.viewButton {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(57, 185, 57);
+  border: none;
+  border-radius: 5px;
 }
