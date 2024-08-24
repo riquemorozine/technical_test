@@ -1,0 +1,50 @@
+.tableContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 10px 50px;
+      max-width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    tr:nth-child(even) {
+      background-color: #d5d5d6;
+    }
+
+    @media screen and (max-width: 1050px) {
+      td,
+      th {
+        padding: 4px;
+        max-width: 140px;
+      }
+    }
+
+    @media screen and (max-width: 420px) {
+      td,
+      th {
+        max-width: 50px;
+      }
+    }
+  }
+}
+
+.viewButton {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(57, 185, 57);
+  border: none;
+  border-radius: 5px;
+}
