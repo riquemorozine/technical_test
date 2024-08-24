@@ -1,5 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { v4 as uuid } from "uuid";
 
 import * as Dialog from "@radix-ui/react-dialog";
 
@@ -18,6 +19,7 @@ type Inputs = {
 
 export default function CreateBookModal() {
   const { getAuthors } = useAuthor();
+  const { addBook } = useBook();
 
   const {
     register,
@@ -26,8 +28,24 @@ export default function CreateBookModal() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createBookSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = ({ author, name, pages }) => {
+    console.log(author);
+
+    // if (!findAuthorId) {
+    //   setError("author", {
+    //     type: "manual",
+    //     message: "Selected author is invalid",
+    //   });
+    // }
+
+    const createBook = addBook({
+      id: uuid(),
+      author_id: author,
+      name,
+      pages,
+    });
+
+    console.log(createBook);
   };
 
   return (
@@ -42,7 +60,7 @@ export default function CreateBookModal() {
             </label>
 
             <input
-              {...register("name", { required: "this input is required" })}
+              {...register("name")}
               id="bookName"
               type="text"
               className="ModalInput"

@@ -14,8 +14,6 @@ export class BookStorage {
   }
 
   updateBooks(books: IBook[]): void {
-    if (!this.booksStorage) return;
-
     localStorage.setItem("books", JSON.stringify(books));
   }
 }

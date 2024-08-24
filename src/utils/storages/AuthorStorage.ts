@@ -14,8 +14,6 @@ export class AuthorStorage {
   }
 
   updateAuthor(authors: IAuthors[]): void {
-    if (!this.authorStorage) return;
-
     localStorage.setItem("authors", JSON.stringify(authors));
   }
 }

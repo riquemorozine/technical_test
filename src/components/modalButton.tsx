@@ -11,9 +11,7 @@ export default function ModalButton({ children, name }: ModalButtonProps) {
     <Dialog.Root>
       {children}
 
-      <Dialog.Trigger>
-        <button>{name}</button>
-      </Dialog.Trigger>
+      <Dialog.Trigger>{name}</Dialog.Trigger>
     </Dialog.Root>
   );
 }

@@ -2,8 +2,6 @@ import { useState } from "react";
 
 import { IBook } from "../domains/IBook";
 
-import { useAuthor } from "../contexts/AuthorContext";
-
 import Checkbox from "./checkbox";
 
 interface ITableProps {
@@ -13,7 +11,6 @@ interface ITableProps {
 
 export default function Table({ data }: ITableProps) {
   const [selectedBooks, setSelectedBooks] = useState<string[]>([]);
-  const { getAuthorById } = useAuthor();
 
   const setSelected = (id: string) => {
     const findSomeSelected = selectedBooks.some(

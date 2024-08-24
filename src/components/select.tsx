@@ -37,7 +37,7 @@ export default function Selector({ data, onValueChange }: SelectorProps) {
             <Select.Group>
               <Select.Label className="SelectLabel">Authors</Select.Label>
               {data.map(({ name, id }) => (
-                <SelectItem value={name} key={id}>
+                <SelectItem value={id} key={id}>
                   {name}
                 </SelectItem>
               ))}
