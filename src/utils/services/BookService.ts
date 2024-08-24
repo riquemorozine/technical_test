@@ -57,4 +57,15 @@ export class Book {
 
     return [...books, data];
   }
+
+  getAllBooksFromAuthor(id: string): IBook[] | null {
+    const books = this.bookStorage.getBooks();
+
+    if (!books) return null;
+
+    const findBooks = books.filter((book) => book.author_id === id);
+    if (!findBooks) return null;
+
+    return findBooks;
+  }
 }
