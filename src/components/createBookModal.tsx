@@ -1,6 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import Select from "./select";
+import { useAuthor } from "../contexts/AuthorContext";
 
 export default function CreateBookModal() {
+  const { getAuthors } = useAuthor();
+
+  const handleSelect = (id: string) => {
+    console.log(id);
+  };
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="ModalOverlay" />
@@ -23,7 +31,7 @@ export default function CreateBookModal() {
           <label htmlFor="author" className="ModalLabel">
             Author*
           </label>
-          <input type="text" id="author" placeholder="J.K. Rowling" />
+          <Select data={getAuthors()} onValueChange={handleSelect} />
         </fieldset>
 
         <fieldset>

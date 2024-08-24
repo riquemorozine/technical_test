@@ -1,0 +1,100 @@
+@import "../abstracts/variables";
+
+button {
+  all: unset;
+}
+
+.SelectTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: start;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 13px;
+  line-height: 1;
+  height: 35px;
+  gap: 5px;
+  background-color: white;
+  color: $black;
+  border: 1px solid $black;
+
+  :focus {
+    box-shadow: 0 0 0 2px $black;
+  }
+
+  &[data-placeholder] {
+    color: $black;
+  }
+}
+
+.SelectIcon {
+  color: $black;
+}
+
+.SelectContent {
+  overflow: hidden;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: $selectShadow;
+}
+
+.SelectViewport {
+  padding: 5px;
+}
+
+.SelectItem {
+  font-size: 13px;
+  line-height: 1;
+  color: $darkGreen;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 35px 0 25px;
+  position: relative;
+
+  user-select: none;
+
+  &[data-disabled] {
+    color: rgb(116, 119, 118);
+    pointer-events: none;
+  }
+
+  &[data-highlighted] {
+    outline: none;
+    background-color: rgb(216, 216, 216);
+    color: $darkGreen;
+  }
+}
+
+.SelectLabel {
+  padding: 0 25px;
+  font-size: 12px;
+  line-height: 25px;
+  color: rgb(116, 119, 118);
+}
+
+.SelectSeparator {
+  height: 1px;
+  background-color: $darkGreen;
+  margin: 5px;
+}
+
+.SelectItemIndicator {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SelectScrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: white;
+  color: $green;
+  cursor: default;
+}
