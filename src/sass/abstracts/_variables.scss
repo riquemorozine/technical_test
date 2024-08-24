@@ -1,0 +1,17 @@
+$green: #4cea52;
+$grey: #d5d5d6;
+$black: rgb(27, 26, 26);
+
+$border_radius: 5px;
+
+$breakpoints: (
+  "medium": (
+    min-width: 800px,
+  ),
+  "large": (
+    min-width: 1000px,
+  ),
+  "huge": (
+    min-width: 1200px,
+  ),
+);

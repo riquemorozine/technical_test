@@ -1,3 +1,6 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
 .tableContainer {
   display: flex;
   align-items: center;
@@ -9,30 +12,30 @@
 
     th,
     td {
-      border: 1px solid black;
-      padding: 10px 50px;
-      max-width: 300px;
+      border: 1px solid $black;
+      padding: 4px;
+      max-width: 50px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     tr:nth-child(even) {
-      background-color: #d5d5d6;
+      background-color: $grey;
     }
 
-    @media screen and (max-width: 1050px) {
+    @include respond-to("large") {
       td,
       th {
-        padding: 4px;
-        max-width: 140px;
+        padding: 10px 50px;
+        max-width: 300px;
       }
     }
 
-    @media screen and (max-width: 420px) {
+    @include respond-to("medium") {
       td,
       th {
-        max-width: 50px;
+        max-width: 140px;
       }
     }
   }
@@ -44,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(57, 185, 57);
+  background-color: $green;
   border: none;
-  border-radius: 5px;
+  border-radius: $border_radius;
 }

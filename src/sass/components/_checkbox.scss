@@ -1,15 +1,17 @@
+@import "../abstracts/variables";
+
 .CheckboxRoot {
   background-color: white;
   width: 25px;
   height: 25px;
-  border-radius: 4px;
+  border-radius: $border_radius;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid $black;
   font-size: 18px;
 }
 
 .CheckboxIndicator {
-  color: green;
+  color: $green;
 }

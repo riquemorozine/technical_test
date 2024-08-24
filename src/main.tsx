@@ -5,8 +5,7 @@ import { BookProvider } from "./contexts/BookContext.tsx";
 
 import App from "./App.tsx";
 
-import "./sass/base/_global.scss";
-import "./sass/base/_reset.scss";
+import "./sass/main.scss";
 import { AuthorProvider } from "./contexts/AuthorContext.tsx";
 
 createRoot(document.getElementById("root")!).render(

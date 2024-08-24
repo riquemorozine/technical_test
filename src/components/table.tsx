@@ -4,7 +4,6 @@ import { IBook } from "../domains/IBook";
 
 import { useAuthor } from "../contexts/AuthorContext";
 
-import "../sass/components/_table.scss";
 import Checkbox from "./checkbox";
 
 interface ITableProps {

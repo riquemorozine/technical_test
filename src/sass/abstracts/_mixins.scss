@@ -1,0 +1,11 @@
+@mixin respond-to($size) {
+  @if map-has-key($breakpoints, $size) {
+    $breakpoint: map-get($breakpoints, $size);
+
+    @media screen and (min-width: map-get($breakpoint, min-width)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$size} not found in \$breakpoints map.";
+  }
+}

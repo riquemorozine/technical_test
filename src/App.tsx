@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { useBook } from "./contexts/BookContext";
 import Table from "./components/table";
 
-import "./sass/pages/_app.scss";
-
 function App() {
   const { books, setBook, addBook } = useBook();
 
