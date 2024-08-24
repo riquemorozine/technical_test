@@ -7,11 +7,14 @@ import App from "./App.tsx";
 
 import "./sass/base/_global.scss";
 import "./sass/base/_reset.scss";
+import { AuthorProvider } from "./contexts/AuthorContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BookProvider>
-      <App />
-    </BookProvider>
+    <AuthorProvider>
+      <BookProvider>
+        <App />
+      </BookProvider>
+    </AuthorProvider>
   </StrictMode>
 );

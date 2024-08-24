@@ -9,7 +9,12 @@ function App() {
   useEffect(() => {
     setBook([{ author_id: "123", id: "123", name: "um livro ai", pages: 12 }]);
 
-    addBook({ author_id: "133", id: "133", name: "novo livro", pages: 12 });
+    addBook({
+      author_id: "133",
+      id: "133",
+      name: "novo livro a5 ",
+      pages: 12,
+    });
   }, []);
 
   return (
