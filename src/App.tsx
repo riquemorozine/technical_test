@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import Table from "./components/table";
+
 import { useBook } from "./contexts/BookContext";
+import Table from "./components/table";
+
 import "./sass/pages/_app.scss";
 
 function App() {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IBook } from "../domains/IBook";
 import "../sass/components/table/_table.scss";
+import { useAuthor } from "../contexts/AuthorContext";
 
 interface ITableProps {
   headers: string[];
@@ -9,6 +10,7 @@ interface ITableProps {
 
 export default function Table({ data }: ITableProps) {
   const [selectedBooks, setSelectedBooks] = useState<string[]>([]);
+  const { getAuthorById } = useAuthor();
 
   const setSelected = (id: string) => {
     const findSomeSelected = selectedBooks.some(
@@ -45,7 +47,7 @@ export default function Table({ data }: ITableProps) {
               <input type="checkbox" onChange={() => setSelected(id)} />
             </td>
             <td>{name}</td>
-            <td>{author_id}</td>
+            <td>{getAuthorById(author_id)?.name || "Unknown Author"}</td>
             <td>{pages}</td>
             <td>
               <button className="viewButton" onClick={() => openBook(id)}>
