@@ -1,0 +1,43 @@
+import * as Dialog from "@radix-ui/react-dialog";
+
+export default function CreateBookModal() {
+  return (
+    <Dialog.Portal>
+      <Dialog.Overlay className="ModalOverlay" />
+      <Dialog.Content className="ModalContent">
+        <Dialog.Title className="ModalTitle">Create Book</Dialog.Title>
+
+        <fieldset>
+          <label htmlFor="bookName" className="ModalLabel">
+            Name*
+          </label>
+          <input
+            type="text"
+            placeholder="Harry Potter"
+            id="bookName"
+            className="ModalInput"
+          />
+        </fieldset>
+
+        <fieldset>
+          <label htmlFor="author" className="ModalLabel">
+            Author*
+          </label>
+          <input type="text" id="author" placeholder="J.K. Rowling" />
+        </fieldset>
+
+        <fieldset>
+          <label htmlFor="pages" className="ModalLabel">
+            Pages
+          </label>
+          <input
+            type="text"
+            id="pages"
+            placeholder="139"
+            className="ModalInput"
+          />
+        </fieldset>
+      </Dialog.Content>
+    </Dialog.Portal>
+  );
+}

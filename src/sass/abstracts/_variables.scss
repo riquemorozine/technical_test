@@ -1,8 +1,13 @@
 $green: #4cea52;
 $grey: #d5d5d6;
 $black: rgb(27, 26, 26);
+$overlayColor: #000000b3;
+$modalBorderColor: #dedede;
 
 $border_radius: 5px;
+
+$modal_shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+  hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 
 $breakpoints: (
   "medium": (

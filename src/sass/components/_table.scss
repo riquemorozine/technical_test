@@ -14,7 +14,7 @@
     td {
       border: 1px solid $black;
       padding: 4px;
-      max-width: 50px;
+      max-width: 200px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -24,18 +24,18 @@
       background-color: $grey;
     }
 
+    @include respond-to("medium") {
+      td,
+      th {
+        max-width: 600px;
+      }
+    }
+
     @include respond-to("large") {
       td,
       th {
         padding: 10px 50px;
-        max-width: 300px;
-      }
-    }
-
-    @include respond-to("medium") {
-      td,
-      th {
-        max-width: 140px;
+        max-width: 800px;
       }
     }
   }

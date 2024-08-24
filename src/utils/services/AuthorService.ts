@@ -27,7 +27,6 @@ export class Author {
 
   delete(id: string): IAuthors[] | void {
     const authors = this.authorStorage.getAuthors();
-
     if (!authors) return;
 
     const authorExist = authors.some((author: IAuthors) => author.id === id);

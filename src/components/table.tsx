@@ -36,23 +36,17 @@ export default function Table({ data }: ITableProps) {
       <table>
         <thead>
           <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th></th>
+            <th colSpan={3}>Name</th>
           </tr>
         </thead>
 
         <tbody>
-          {data.map(({ id, name, author_id, pages }: IBook) => (
+          {data.map(({ id, name }: IBook) => (
             <tr key={id}>
               <td>
                 <Checkbox onCheckedChange={() => setSelected(id)} />
               </td>
               <td>{name}</td>
-              <td>{getAuthorById(author_id)?.name || "Unknown Author"}</td>
-              <td>{pages}</td>
               <td>
                 <button className="viewButton" onClick={() => openBook(id)}>
                   <img src="./eye.svg" alt="Eye image button" />
