@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 
-import { Book } from "../utils/Book";
+import { Book } from "../utils/services/BookService";
 import { IBook } from "../domains/IBook";
 
 export interface IBookContext {

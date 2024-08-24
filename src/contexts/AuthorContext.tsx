@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { IAuthors } from "../domains/IAuthors";
-import { Author } from "../utils/Author";
+import { Author } from "../utils/services/AuthorService";
 
 export interface IAuthorContext {
   authors: IAuthors[];
