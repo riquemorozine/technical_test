@@ -62,3 +62,15 @@
   border-radius: $borderRadius;
   padding: 10px;
 }
+
+.ModalButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: $darkGreen;
+  border-radius: $borderRadius;
+  color: white;
+  width: 100px;
+  height: 20px;
+}

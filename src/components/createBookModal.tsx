@@ -10,6 +10,7 @@ import { useBook } from "../contexts/BookContext";
 import Select from "./select";
 import { ErrorMessage } from "@hookform/error-message";
 import { createBookSchema } from "../utils/validators/createBookValidator";
+import { useState } from "react";
 
 type Inputs = {
   name: string;
@@ -19,106 +20,124 @@ type Inputs = {
 
 export default function CreateBookModal() {
   const { getAuthors } = useAuthor();
-  const { addBook } = useBook();
+  const { addBook, getBooks } = useBook();
+  const [modal, setModal] = useState<boolean>(false);
 
   const {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createBookSchema) });
 
   const onSubmit: SubmitHandler<Inputs> = ({ author, name, pages }) => {
-    console.log(author);
+    const existAuthor = getAuthors().find(
+      (currentAuthors) => currentAuthors.id === author
+    );
 
-    // if (!findAuthorId) {
-    //   setError("author", {
-    //     type: "manual",
-    //     message: "Selected author is invalid",
-    //   });
-    // }
+    if (!existAuthor) {
+      setError("author", {
+        message: "Author doesn't exist",
+      });
+    }
 
-    const createBook = addBook({
+    const bookExist = getBooks().find(
+      (book) => book.name === name && book.author_id === author
+    );
+
+    if (bookExist) {
+      setError("name", {
+        message: "Book already exist",
+      });
+    }
+
+    addBook({
       id: uuid(),
       author_id: author,
       name,
       pages,
     });
 
-    console.log(createBook);
+    setModal(!modal);
   };
 
   return (
-    <Dialog.Portal>
-      <Dialog.Overlay className="ModalOverlay" />
-      <Dialog.Content className="ModalContent">
-        <Dialog.Title className="ModalTitle">Create Book</Dialog.Title>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <fieldset>
-            <label htmlFor="bookName" className="ModalLabel">
-              Name*
-            </label>
+    <Dialog.Root onOpenChange={setModal} open={modal}>
+      <Dialog.Trigger className="ModalButton">Criar Livro</Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="ModalOverlay" />
+        <Dialog.Content className="ModalContent">
+          <Dialog.Title className="ModalTitle">Create Book</Dialog.Title>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <fieldset>
+              <label htmlFor="bookName" className="ModalLabel">
+                Name*
+              </label>
 
-            <input
-              {...register("name")}
-              id="bookName"
-              type="text"
-              className="ModalInput"
-              placeholder="Harry Potter"
-            />
+              <input
+                {...register("name")}
+                id="bookName"
+                type="text"
+                className="ModalInput"
+                placeholder="Harry Potter"
+              />
 
-            <ErrorMessage
-              errors={errors}
-              name="name"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </fieldset>
+              <ErrorMessage
+                errors={errors}
+                name="name"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
 
-          <fieldset>
-            <label htmlFor="author" className="ModalLabel">
-              Author*
-            </label>
+            <fieldset>
+              <label htmlFor="author" className="ModalLabel">
+                Author*
+              </label>
 
-            <Select
-              data={getAuthors()}
-              onValueChange={(value) => setValue("author", value)}
-            />
+              <Select
+                data={getAuthors()}
+                onValueChange={(value) => setValue("author", value)}
+              />
 
-            <input
-              type="hidden"
-              {...register("author", { required: "Author is required" })}
-            />
+              <input
+                type="hidden"
+                {...register("author", { required: "Author is required" })}
+              />
 
-            <ErrorMessage
-              errors={errors}
-              name="author"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </fieldset>
+              <ErrorMessage
+                errors={errors}
+                name="author"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
 
-          <fieldset>
-            <label htmlFor="pages" className="ModalLabel">
-              Pages
-            </label>
+            <fieldset>
+              <label htmlFor="pages" className="ModalLabel">
+                Pages
+              </label>
 
-            <input
-              {...register("pages")}
-              id="pages"
-              type="text"
-              placeholder="139"
-              className="ModalInput"
-            />
+              <input
+                {...register("pages")}
+                id="pages"
+                type="text"
+                placeholder="139"
+                className="ModalInput"
+              />
 
-            <ErrorMessage
-              errors={errors}
-              name="pages"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </fieldset>
+              <ErrorMessage
+                errors={errors}
+                name="pages"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
 
-          <button type="submit">Submit</button>
-        </form>
-      </Dialog.Content>
-    </Dialog.Portal>
+            <button type="submit" className="ModalButton">
+              Submit
+            </button>
+          </form>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

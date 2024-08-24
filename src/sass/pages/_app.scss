@@ -1,7 +1,23 @@
 main {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.createButtons {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tables {
+  width: 100%;
+  height: 800px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
