@@ -9,7 +9,7 @@
 .ModalContent {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 
   background-color: white;
   border-radius: $borderRadius;
@@ -23,10 +23,21 @@
   max-height: 85vh;
   padding: 40px;
 
-  fieldset {
+  form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+
+    fieldset {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      p {
+        font-size: 13px;
+        color: red;
+      }
+    }
   }
 }
 
