@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Checkbox from "./checkbox";
 import BookModal from "./books/bookModal";
+import AuthorModal from "./authors/authorModal";
 
 interface IData {
   id: string;
@@ -46,7 +47,11 @@ export default function Table({ data, type }: ITableProps) {
               </td>
               <td>{name}</td>
               <td>
-                {type === "Books" ? <BookModal id={id} key={id} /> : <></>}
+                {type === "Books" ? (
+                  <BookModal id={id} key={id} />
+                ) : (
+                  <AuthorModal id={id} key={id} />
+                )}
               </td>
             </tr>
           ))}
