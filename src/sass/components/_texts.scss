@@ -1,0 +1,34 @@
+@import "../abstracts/mixins", "../themes/colors";
+
+.Text {
+  @include text-style($primaryTextColor);
+  @include text-size(16px, 400);
+
+  &--primary {
+    @include text-style($primaryTextColor);
+  }
+
+  &--secondary {
+    @include text-style($secondaryTextColor);
+  }
+
+  &--small {
+    @include text-size(14px, 400);
+  }
+
+  &--medium {
+    @include text-size(18px, 400);
+  }
+
+  &--large {
+    @include text-size(20px, 700);
+  }
+
+  &--bold {
+    @include text-size(16px, 700);
+  }
+
+  &--light {
+    @include text-size(16px, 300);
+  }
+}

@@ -1,4 +1,4 @@
-@import "variables";
+@import "variables", "../themes/colors";
 
 @mixin respond-to($size) {
   @if map-has-key($breakpoints, $size) {
@@ -29,4 +29,13 @@
   height: $height;
   width: $width;
   font-size: 16px;
+}
+
+@mixin text-style($color: $primaryTextColor) {
+  color: $color;
+}
+
+@mixin text-size($color: $primaryTextColor, $size: 16px, $weight: 400) {
+  font-size: $size;
+  font-weight: $weight;
 }

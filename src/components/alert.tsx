@@ -8,7 +8,7 @@ interface AlertProps {
 export default function Alert({ id }: AlertProps) {
   return (
     <AlertDialog.Root>
-      <AlertDialog.Trigger className="DeleteButton">
+      <AlertDialog.Trigger className="Button Button--small Button--secondary">
         <TrashIcon color="white" />
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
@@ -23,10 +23,12 @@ export default function Alert({ id }: AlertProps) {
           </AlertDialog.Description>
           <div className="AlertDialogButtons">
             <AlertDialog.Action asChild>
-              <button className="Button">Cancelar</button>
+              <button className="Button Button--medium">Cancelar</button>
             </AlertDialog.Action>
             <AlertDialog.Cancel asChild>
-              <button className="Button--secondary">Deletar</button>
+              <button className="Button Button--secondary Button--medium">
+                Deletar
+              </button>
             </AlertDialog.Cancel>
           </div>
         </AlertDialog.Content>

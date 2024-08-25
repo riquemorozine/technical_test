@@ -41,20 +41,6 @@
   }
 }
 
-.ModalTitle {
-  margin: 0;
-  font-weight: 600;
-  color: black;
-  font-size: 17px;
-}
-
-.ModalLabel {
-  margin: 0;
-  font-weight: 400;
-  color: black;
-  font-size: 14px;
-}
-
 .ModalInput {
   display: flex;
   align-items: flex-start;
@@ -67,14 +53,4 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-
-  .ModalDetailsTitle {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .ModalDetailsDescription {
-    font-weight: 400;
-    color: grey;
-  }
 }

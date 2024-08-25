@@ -39,20 +39,3 @@
     outline: none;
   }
 }
-
-.AlertDialogButtons {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 20px;
-}
-
-.DeleteButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: red;
-  width: 30px;
-  height: 30px;
-  border-radius: $borderRadius;
-}
