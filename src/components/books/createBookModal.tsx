@@ -66,7 +66,7 @@ export default function CreateBookModal() {
 
   return (
     <Dialog.Root onOpenChange={setModal} open={modal}>
-      <Dialog.Trigger className="Button Button--medium">
+      <Dialog.Trigger className="Button Button--medium" style={{ gridArea: 1 }}>
         Criar Livro
       </Dialog.Trigger>
       <Dialog.Portal>

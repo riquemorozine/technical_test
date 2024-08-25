@@ -15,10 +15,9 @@ main {
   }
 }
 
-.createButtons {
+.justifyButtons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   width: 65rem;
   gap: 10px;
 }
@@ -26,8 +25,8 @@ main {
 .tablesContainer {
   display: flex;
   flex-direction: column;
-  gap: 50px;
   align-items: center;
+  gap: 50px;
 
   .tables {
     width: 100%;
@@ -37,6 +36,8 @@ main {
   }
 
   @include respond-to("medium") {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 0.2fr);
   }
 }

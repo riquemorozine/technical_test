@@ -11,16 +11,14 @@ function App() {
 
   return (
     <main>
-      <div className="createButtons">
-        <CreateBookModal />
-        <CreateAuthorModal />
-      </div>
-
+      <div className="justifyButtons"></div>
       <div className="tablesContainer">
+        <CreateBookModal />
         <div className="tables">
           <Table type="Books" data={books} headers={["Book Name"]} />
         </div>
 
+        <CreateAuthorModal />
         <div className="tables">
           <Table type="Authors" data={authors} headers={["Author"]} />
         </div>
