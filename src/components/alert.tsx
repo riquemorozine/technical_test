@@ -1,11 +1,27 @@
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { TrashIcon } from "@radix-ui/react-icons";
+import { useBook } from "../contexts/BookContext";
+import { useAuthor } from "../contexts/AuthorContext";
 
 interface AlertProps {
   id: string;
+  type: "Books" | "Authors";
 }
 
-export default function Alert({ id }: AlertProps) {
+export default function Alert({ id, type }: AlertProps) {
+  const { deleteBook } = useBook();
+  const { deleteAuthor } = useAuthor();
+
+  const handleDelete = () => {
+    console.log(id);
+
+    if (type === "Books") {
+      deleteBook(id);
+    }
+
+    deleteAuthor(id);
+  };
+
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger className="Button Button--small Button--secondary">
@@ -14,18 +30,18 @@ export default function Alert({ id }: AlertProps) {
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="AlertDialogOverlay" />
         <AlertDialog.Content className="AlertDialogContent">
-          <AlertDialog.Title className="AlertDialogTitle">
+          <AlertDialog.Title className="Text--bold">
             Você tem certeza?
           </AlertDialog.Title>
-          <AlertDialog.Description className="AlertDialogDescription">
-            Você realmente deseja excluir este item? Este processo não pode ser
-            desfeito.
+          <AlertDialog.Description className="Text--small Text--secondary">
+            Você realmente deseja excluir este item? <br /> Este processo não
+            pode ser desfeito.
           </AlertDialog.Description>
           <div className="AlertDialogButtons">
             <AlertDialog.Action asChild>
               <button className="Button Button--medium">Cancelar</button>
             </AlertDialog.Action>
-            <AlertDialog.Cancel asChild>
+            <AlertDialog.Cancel asChild onClick={handleDelete}>
               <button className="Button Button--secondary Button--medium">
                 Deletar
               </button>

@@ -11,8 +11,6 @@ export class Book {
   fetch(): IBook[] {
     const books = this.bookStorage.getBooks();
 
-    console.log(books);
-
     if (!books) {
       const exampleBook = {
         author_id: "1",

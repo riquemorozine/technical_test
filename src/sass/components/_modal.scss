@@ -9,7 +9,7 @@
 .ModalContent {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 
   background-color: white;
   border-radius: $borderRadius;
@@ -52,5 +52,5 @@
 .ModalDetails {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }

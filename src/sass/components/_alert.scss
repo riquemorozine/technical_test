@@ -21,21 +21,13 @@
   flex-direction: column;
   gap: 20px;
 
-  .AlertDialogTitle {
-    margin: 0;
-    font-weight: 600;
-    color: black;
-    font-size: 17px;
-  }
-
-  .AlertDialogDescription {
-    margin: 0;
-    font-weight: 600;
-    color: black;
-    font-size: 17px;
-  }
-
   :focus {
     outline: none;
+  }
+
+  .AlertDialogButtons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
 }

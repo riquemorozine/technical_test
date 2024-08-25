@@ -35,7 +35,7 @@ export default function Selector({ data, onValueChange }: SelectorProps) {
           </Select.ScrollUpButton>
           <Select.Viewport className="SelectViewport">
             <Select.Group>
-              <Select.Label className="SelectLabel">Authors</Select.Label>
+              <Select.Label className="SelectLabel">Autores</Select.Label>
               {data.map(({ name, id }) => (
                 <SelectItem value={id} key={id}>
                   {name}

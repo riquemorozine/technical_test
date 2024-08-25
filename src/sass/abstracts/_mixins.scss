@@ -35,7 +35,7 @@
   color: $color;
 }
 
-@mixin text-size($color: $primaryTextColor, $size: 16px, $weight: 400) {
+@mixin text-size($size: 16px, $weight: 400) {
   font-size: $size;
   font-weight: $weight;
 }

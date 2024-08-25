@@ -34,12 +34,12 @@ export default function AuthorModal({ id }: IAuthorModalProps) {
           <Dialog.Overlay className="ModalOverlay" />
           <Dialog.Content className="ModalContent">
             <Dialog.Title className="Text--bold">{author?.name}</Dialog.Title>
-            <div className="ModalDetails">
-              <p className="Text--bold">Email</p>
-              <p className="Text--small Text--secondary">
-                {author?.email === "" ? "Email not found" : author?.email}
-              </p>
-            </div>
+            <Dialog.Description className="Text--medium">
+              Email
+            </Dialog.Description>
+            <p className="Text--small Text--secondary">
+              {author?.email === "" ? "Email not found" : author?.email}
+            </p>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>

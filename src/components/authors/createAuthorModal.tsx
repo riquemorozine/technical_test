@@ -55,10 +55,13 @@ export default function CreateAuthorModal() {
         <Dialog.Overlay className="ModalOverlay" />
         <Dialog.Content className="ModalContent">
           <Dialog.Title className="Text--bold">Criar Autor</Dialog.Title>
+          <Dialog.Description className="Text--small Text--secondary">
+            Adicione um novo autor na tabela
+          </Dialog.Description>
           <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
               <label htmlFor="bookName" className="Text--small">
-                Name*
+                Nome*
               </label>
 
               <input
@@ -97,7 +100,7 @@ export default function CreateAuthorModal() {
             </fieldset>
 
             <button type="submit" className="Button Button--medium">
-              Submit
+              Criar
             </button>
           </form>
         </Dialog.Content>

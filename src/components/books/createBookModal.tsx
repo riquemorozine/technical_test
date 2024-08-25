@@ -72,11 +72,14 @@ export default function CreateBookModal() {
       <Dialog.Portal>
         <Dialog.Overlay className="ModalOverlay" />
         <Dialog.Content className="ModalContent">
-          <Dialog.Title className="Text--bold">Create Book</Dialog.Title>
+          <Dialog.Title className="Text--bold">Criação de Livro</Dialog.Title>
+          <Dialog.Description className="Text--small Text--secondary">
+            Adicione livros na tabela
+          </Dialog.Description>
           <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
               <label htmlFor="bookName" className="Text--small">
-                Name*
+                Nome*
               </label>
 
               <input
@@ -96,7 +99,7 @@ export default function CreateBookModal() {
 
             <fieldset>
               <label htmlFor="author" className="Text--small">
-                Author*
+                Autor*
               </label>
 
               <Select
@@ -118,7 +121,7 @@ export default function CreateBookModal() {
 
             <fieldset>
               <label htmlFor="pages" className="Text--small">
-                Pages
+                Quantidade de Paginas
               </label>
 
               <input
@@ -137,7 +140,7 @@ export default function CreateBookModal() {
             </fieldset>
 
             <button type="submit" className="Button Button--medium">
-              Submit
+              Criar
             </button>
           </form>
         </Dialog.Content>

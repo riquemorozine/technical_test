@@ -47,14 +47,18 @@ export default function Table({ data, type }: ITableProps) {
                 <Checkbox onCheckedChange={() => setSelected(id)} />
               </td>
               <td>{name}</td>
-              <td className="tableButtons">
+              <td>
                 {type === "Books" ? (
-                  <BookModal id={id} />
+                  <div className="tableButtons">
+                    <BookModal id={id} />
+                    <Alert type="Books" id={id} />
+                  </div>
                 ) : (
-                  <AuthorModal id={id} />
+                  <div className="tableButtons">
+                    <AuthorModal id={id} />
+                    <Alert type="Authors" id={id} />
+                  </div>
                 )}
-
-                <Alert id={id} />
               </td>
             </tr>
           ))}

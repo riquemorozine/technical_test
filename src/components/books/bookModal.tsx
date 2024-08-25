@@ -34,14 +34,16 @@ export default function BookModal({ id }: BookModalProps) {
         <Dialog.Overlay className="ModalOverlay" />
         <Dialog.Content className="ModalContent">
           <Dialog.Title className="Text--bold">{book?.name}</Dialog.Title>
+          <Dialog.Description className="Text--medium">
+            Autor
+          </Dialog.Description>
           <div className="ModalDetails">
-            <p className="Text--bold">Autor</p>
             <p className="Text--small Text--secondary">
               {book?.author_id && getAuthorById(book.author_id)?.name}
             </p>
           </div>
           <div className="ModalDetails">
-            <p className="Text--bold">Total de Paginas</p>
+            <p className="Text--medium">Total de Paginas</p>
             <p className="Text--small Text--secondary">{book?.pages}</p>
           </div>
         </Dialog.Content>
