@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Checkbox from "./checkbox";
-import BookModal from "./bookModal";
+import BookModal from "./books/bookModal";
 
 interface IData {
   id: string;

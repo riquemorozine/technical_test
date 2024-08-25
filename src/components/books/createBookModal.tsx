@@ -7,12 +7,12 @@ import { ErrorMessage } from "@hookform/error-message";
 
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { useAuthor } from "../contexts/AuthorContext";
-import { useBook } from "../contexts/BookContext";
+import { useAuthor } from "../../contexts/AuthorContext";
+import { useBook } from "../../contexts/BookContext";
 
-import { createBookSchema } from "../utils/validators/createBookValidator";
+import { createBookSchema } from "../../utils/validators/createBookValidator";
 
-import Select from "./select";
+import Select from "../select";
 
 type Inputs = {
   name: string;

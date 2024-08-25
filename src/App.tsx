@@ -1,5 +1,6 @@
 import Table from "./components/table";
-import CreateBookModal from "./components/createBookModal";
+import CreateBookModal from "./components/books/createBookModal";
+import CreateAuthorModal from "./components/authors/createAuthorModal";
 
 import { useBook } from "./contexts/BookContext";
 import { useAuthor } from "./contexts/AuthorContext";
@@ -12,6 +13,7 @@ function App() {
     <main>
       <div className="createButtons">
         <CreateBookModal />
+        <CreateAuthorModal />
       </div>
 
       <div className="tablesContainer">
