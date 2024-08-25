@@ -1,28 +1,32 @@
 import { useState } from "react";
 
-import { IBook } from "../domains/IBook";
-
 import Checkbox from "./checkbox";
 import BookModal from "./bookModal";
 
-interface ITableProps {
-  headers: string[];
-  data: IBook[];
+interface IData {
+  id: string;
+  name: string;
 }
 
-export default function Table({ data }: ITableProps) {
-  const [selectedBooks, setSelectedBooks] = useState<string[]>([]);
+interface ITableProps {
+  headers: string[];
+  data: IData[];
+  type: string;
+}
+
+export default function Table({ data, type }: ITableProps) {
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const setSelected = (id: string) => {
-    const findSomeSelected = selectedBooks.some(
-      (bookId: string) => bookId === id
+    const findSomeSelected = selectedItems.some(
+      (itemId: string) => itemId === id
     );
 
     if (findSomeSelected) {
-      setSelectedBooks(selectedBooks.filter((bookId: string) => bookId != id));
+      setSelectedItems(selectedItems.filter((itemId: string) => itemId != id));
     }
 
-    setSelectedBooks([...selectedBooks, id]);
+    setSelectedItems([...selectedItems, id]);
   };
 
   return (
@@ -30,19 +34,19 @@ export default function Table({ data }: ITableProps) {
       <table>
         <thead>
           <tr>
-            <th colSpan={3}>Name</th>
+            <th colSpan={3}>{type}</th>
           </tr>
         </thead>
 
         <tbody>
-          {data.map(({ id, name }: IBook) => (
+          {data.map(({ id, name }: IData) => (
             <tr key={id}>
               <td>
                 <Checkbox onCheckedChange={() => setSelected(id)} />
               </td>
               <td>{name}</td>
               <td>
-                <BookModal id={id} key={id} />
+                {type === "Books" ? <BookModal id={id} key={id} /> : <></>}
               </td>
             </tr>
           ))}
