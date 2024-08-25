@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IBook } from "../domains/IBook";
 
 import Checkbox from "./checkbox";
+import BookModal from "./bookModal";
 
 interface ITableProps {
   headers: string[];
@@ -24,10 +25,6 @@ export default function Table({ data }: ITableProps) {
     setSelectedBooks([...selectedBooks, id]);
   };
 
-  const openBook = (id: string) => {
-    console.log(id);
-  };
-
   return (
     <div className="tableContainer">
       <table>
@@ -45,9 +42,7 @@ export default function Table({ data }: ITableProps) {
               </td>
               <td>{name}</td>
               <td>
-                <button className="viewButton" onClick={() => openBook(id)}>
-                  <img src="./eye.svg" alt="Eye image button" />
-                </button>
+                <BookModal id={id} key={id} />
               </td>
             </tr>
           ))}

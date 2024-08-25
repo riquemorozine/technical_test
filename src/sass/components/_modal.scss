@@ -74,3 +74,24 @@
   width: 100px;
   height: 20px;
 }
+
+.ModalButton--small {
+  width: 10px;
+  height: 10px;
+}
+
+.ModalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .ModalDetailsTitle {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .ModalDetailsDescription {
+    font-weight: 400;
+    color: grey;
+  }
+}

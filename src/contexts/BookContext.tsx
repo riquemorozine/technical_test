@@ -11,6 +11,7 @@ export interface IBookContext {
   deleteBook: (id: string) => void;
   addBook: (data: IBook) => void;
   getAllBooksFromAuthor: (id: string) => IBook[] | null;
+  getBookById: (id: string) => IBook | null;
 }
 
 interface BookProviderProps {
@@ -60,6 +61,13 @@ export const BookProvider: React.FC<BookProviderProps> = ({ children }) => {
     return findAuthorBooks;
   };
 
+  const getBookById = (id: string): IBook | null => {
+    const findBook = books.find((book) => book.id === id);
+
+    if (!findBook) return null;
+    return findBook;
+  };
+
   const getBooks = (): IBook[] => {
     return books;
   };
@@ -73,6 +81,7 @@ export const BookProvider: React.FC<BookProviderProps> = ({ children }) => {
         deleteBook,
         addBook,
         getAllBooksFromAuthor,
+        getBookById,
       }}
     >
       {children}
