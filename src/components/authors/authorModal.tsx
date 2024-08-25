@@ -27,7 +27,7 @@ export default function AuthorModal({ id }: IAuthorModalProps) {
   return (
     <>
       <Dialog.Root onOpenChange={setModal} open={modal}>
-        <Dialog.Trigger className="ModalButton ModalButton--small">
+        <Dialog.Trigger className="Button Button--small">
           <img src="./eye.svg" alt="Eye image button" />
         </Dialog.Trigger>
         <Dialog.Portal>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Checkbox from "./checkbox";
 import BookModal from "./books/bookModal";
 import AuthorModal from "./authors/authorModal";
+import Alert from "./alert";
 
 interface IData {
   id: string;
@@ -46,12 +47,14 @@ export default function Table({ data, type }: ITableProps) {
                 <Checkbox onCheckedChange={() => setSelected(id)} />
               </td>
               <td>{name}</td>
-              <td>
+              <td className="tableButtons">
                 {type === "Books" ? (
-                  <BookModal id={id} key={id} />
+                  <BookModal id={id} />
                 ) : (
-                  <AuthorModal id={id} key={id} />
+                  <AuthorModal id={id} />
                 )}
+
+                <Alert id={id} />
               </td>
             </tr>
           ))}

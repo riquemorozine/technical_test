@@ -1,0 +1,18 @@
+@import "../abstracts/mixins", "../themes/colors", "../abstracts/variables";
+
+.Button {
+  @include button-styles($primaryButtonColor, $primaryButtonTextColor);
+  @include button-size($mediumButton, $mediumButton);
+
+  &--small {
+    @include button-size($smallButton, $smallButton, 5px);
+  }
+
+  &--medium {
+    @include button-size($mediumButton, auto, 0 15px);
+  }
+
+  &--secondary {
+    @include button-styles($deleteButtonColor, $deleteButtonTextColor);
+  }
+}

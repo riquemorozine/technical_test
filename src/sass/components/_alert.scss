@@ -1,0 +1,58 @@
+@import "../abstracts/variables";
+
+.AlertDialogOverlay {
+  background-color: $overlayColor;
+  position: fixed;
+  inset: 0;
+}
+
+.AlertDialogContent {
+  background-color: white;
+  border-radius: $borderRadius;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 500px;
+  max-height: 85vh;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .AlertDialogTitle {
+    margin: 0;
+    font-weight: 600;
+    color: black;
+    font-size: 17px;
+  }
+
+  .AlertDialogDescription {
+    margin: 0;
+    font-weight: 600;
+    color: black;
+    font-size: 17px;
+  }
+
+  :focus {
+    outline: none;
+  }
+}
+
+.AlertDialogButtons {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+}
+
+.DeleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  border-radius: $borderRadius;
+}

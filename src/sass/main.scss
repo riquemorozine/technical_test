@@ -5,6 +5,8 @@
 @import "base/typography", "base/reset";
 
 @import "components/checkbox", "components/table", "components/modal",
-  "components/select";
+  "components/select", "components/alert", "components/button";
+
+@import "themes/colors";
 
 @import "pages/app";

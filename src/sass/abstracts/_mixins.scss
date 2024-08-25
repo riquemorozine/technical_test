@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin respond-to($size) {
   @if map-has-key($breakpoints, $size) {
     $breakpoint: map-get($breakpoints, $size);
@@ -8,4 +10,23 @@
   } @else {
     @warn "Breakpoint #{$size} not found in \$breakpoints map.";
   }
+}
+
+@mixin button-styles($bg-color, $text-color: #fff) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: $borderRadius;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@mixin button-size($height: 35px, $width: auto, $padding: 0 15px) {
+  padding: $padding;
+  height: $height;
+  width: $width;
+  font-size: 16px;
 }

@@ -12,7 +12,6 @@
 
     th,
     td {
-      border: 0.3px solid $black;
       padding: 4px;
       max-width: 200px;
       white-space: nowrap;
@@ -39,6 +38,13 @@
       }
     }
   }
+}
+
+.tableButtons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .viewButton {

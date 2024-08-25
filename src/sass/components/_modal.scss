@@ -63,23 +63,6 @@
   padding: 10px;
 }
 
-.ModalButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  background: $darkGreen;
-  border-radius: $borderRadius;
-  color: white;
-  width: 100px;
-  height: 20px;
-}
-
-.ModalButton--small {
-  width: 10px;
-  height: 10px;
-}
-
 .ModalDetails {
   display: flex;
   flex-direction: column;
