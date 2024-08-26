@@ -11,6 +11,7 @@ import { createAuthorSchema } from "../../utils/validators/createAuthorValidator
 type Inputs = {
   name: string;
   email: string;
+  description: string;
 };
 
 export default function CreateAuthorModal() {
@@ -24,7 +25,7 @@ export default function CreateAuthorModal() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createAuthorSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = ({ name, email }) => {
+  const onSubmit: SubmitHandler<Inputs> = ({ name, email, description }) => {
     const existAuthor = getAuthors().find(
       (currentAuthors) => currentAuthors.name === name
     );
@@ -41,6 +42,7 @@ export default function CreateAuthorModal() {
       id: uuid(),
       name,
       email,
+      description,
     });
 
     setModal(!modal);
@@ -75,6 +77,25 @@ export default function CreateAuthorModal() {
               <ErrorMessage
                 errors={errors}
                 name="name"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor="authorDescription" className="Text--small">
+                Descrição
+              </label>
+
+              <textarea
+                {...register("description")}
+                id="authorDescription"
+                className="ModalInput"
+                placeholder="Descrição do autor"
+              />
+
+              <ErrorMessage
+                errors={errors}
+                name="description"
                 render={({ message }) => <p>{message}</p>}
               />
             </fieldset>

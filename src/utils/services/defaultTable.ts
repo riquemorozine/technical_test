@@ -6,11 +6,15 @@ export const defaultAuthors: IAuthors[] = [
     id: "1",
     name: "Robert C. Martin",
     email: "robertcmartin@email.com",
+    description:
+      "Robert Cecil Martin is an American software engineer and author. He is a co-author of the Agile Manifesto. He now runs a consulting firm called Uncle Bob Consulting LLC and Clean Coders which hosts videos based on software engineering.",
   },
   {
     id: "2",
     name: "Martin Fowler",
     email: "martinfowler@email.com",
+    description:
+      "Martin Fowler is a British software developer, author and international speaker on software development, specializing in object-oriented analysis and design, UML, patterns, and agile software development methodologies.",
   },
 ];
 

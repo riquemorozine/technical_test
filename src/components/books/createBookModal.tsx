@@ -60,8 +60,6 @@ export default function CreateBookModal() {
       });
     }
 
-    console.log(description);
-
     addBook({
       id: uuid(),
       description,

@@ -12,6 +12,7 @@ import { IAuthors } from "../../domains/IAuthors";
 
 type Inputs = {
   name: string;
+  description: string;
   email: string;
 };
 
@@ -31,10 +32,8 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createAuthorSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = ({ name, email }) => {
+  const onSubmit: SubmitHandler<Inputs> = ({ name, email, description }) => {
     const existAuthor = getAuthors().find((author) => author.name === name);
-
-    console.log(existAuthor);
 
     if (existAuthor && existAuthor.id !== id) {
       setError("name", {
@@ -44,7 +43,7 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
       return;
     }
 
-    updateAuthor({ id, name, email });
+    updateAuthor({ id, name, email, description });
     setModal(false);
   };
 
@@ -89,6 +88,26 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
               <ErrorMessage
                 errors={errors}
                 name="name"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor="authorDescription" className="Text--small">
+                Descrição
+              </label>
+
+              <textarea
+                {...register("description")}
+                id="authorDescription"
+                className="ModalInput"
+                placeholder="Descrição do autor"
+                defaultValue={currentAuthor?.description}
+              />
+
+              <ErrorMessage
+                errors={errors}
+                name="description"
                 render={({ message }) => <p>{message}</p>}
               />
             </fieldset>
