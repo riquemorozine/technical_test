@@ -141,6 +141,20 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
             </fieldset>
 
             <fieldset>
+              <label htmlFor="bookImage" className="Text--small">
+                Imagem
+              </label>
+
+              <input {...register("image")} type="file" accept=".jpg, .png" />
+
+              <ErrorMessage
+                errors={errors}
+                name="bookImage"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
+
+            <fieldset>
               <label htmlFor="author" className="Text--small">
                 Autor*
               </label>
