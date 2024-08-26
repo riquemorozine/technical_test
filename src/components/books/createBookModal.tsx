@@ -133,10 +133,7 @@ export default function CreateBookModal() {
                 onValueChange={(value) => setValue("author", value)}
               />
 
-              <input
-                type="hidden"
-                {...register("author", { required: "Author is required" })}
-              />
+              <input type="hidden" {...register("author")} />
 
               <ErrorMessage
                 errors={errors}

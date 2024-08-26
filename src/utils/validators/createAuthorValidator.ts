@@ -8,6 +8,10 @@ export const createAuthorSchema = yup
       .optional()
       .max(200, "Maximo de 200 caracteres")
       .default(""),
-    email: yup.string().email().optional().default(""),
+    email: yup
+      .string()
+      .email("Precisa ser um email válido")
+      .optional()
+      .default(""),
   })
   .required();
