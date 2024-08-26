@@ -15,4 +15,8 @@
   &--secondary {
     @include button-styles($deleteButtonColor, $deleteButtonTextColor);
   }
+
+  &--yellow {
+    @include button-styles($yellowButtonColor, $primaryButtonTextColor);
+  }
 }

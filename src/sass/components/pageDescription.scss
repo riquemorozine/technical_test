@@ -1,0 +1,18 @@
+.pageDescriptionContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+
+  @include respond-to("medium") {
+    flex-direction: row;
+    width: 80%;
+  }
+}
+
+.pageDescriptionTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

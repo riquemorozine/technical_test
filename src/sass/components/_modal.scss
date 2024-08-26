@@ -48,6 +48,19 @@
   border: 2px solid $modalBorderColor;
   border-radius: $borderRadius;
   padding: 10px;
+  resize: none;
+}
+
+.modalDescription {
+  font-size: 13px;
+  color: $darkGrey;
+  word-wrap: break-word;
+  width: 320px;
+
+  @include respond-to("medium") {
+    width: 460px;
+    max-width: 600px;
+  }
 }
 
 .ModalDetails {

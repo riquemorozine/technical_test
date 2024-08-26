@@ -13,8 +13,6 @@ export default function Alert({ id, type }: AlertProps) {
   const { deleteAuthor } = useAuthor();
 
   const handleDelete = () => {
-    console.log(id);
-
     if (type === "Books") {
       deleteBook(id);
     }

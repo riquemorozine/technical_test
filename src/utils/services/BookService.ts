@@ -58,4 +58,23 @@ export class Book {
 
     return findBooks;
   }
+
+  update(data: IBook): IBook[] | void {
+    const books = this.bookStorage.getBooks();
+    if (!books) return;
+
+    const bookExist = books.some((book: IBook) => book.id === data.id);
+    if (!bookExist) return;
+
+    const updatedBooks = books.map((book: IBook) => {
+      if (book.id === data.id) {
+        return data;
+      }
+      return book;
+    });
+
+    this.bookStorage.updateBooks(updatedBooks);
+
+    return updatedBooks;
+  }
 }

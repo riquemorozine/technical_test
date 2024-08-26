@@ -4,6 +4,11 @@ export const createBookSchema = yup
   .object({
     name: yup.string().required("Nome é obrigatório"),
     author: yup.string().required("Autor é obrigatório"),
+    description: yup
+      .string()
+      .optional()
+      .default("")
+      .max(200, "Maximo de 200 caracteres"),
     pages: yup
       .number()
       .optional()

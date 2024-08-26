@@ -1,22 +1,29 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import { v4 as uuid } from "uuid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorMessage } from "@hookform/error-message";
+import { Pencil1Icon } from "@radix-ui/react-icons";
+import * as Dialog from "@radix-ui/react-dialog";
 
-import { useAuthor } from "../../contexts/AuthorContext";
+import { ErrorMessage } from "@hookform/error-message";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 import { createAuthorSchema } from "../../utils/validators/createAuthorValidator";
+import { useAuthor } from "../../contexts/AuthorContext";
+import { IAuthors } from "../../domains/IAuthors";
 
 type Inputs = {
   name: string;
-  email: string;
   description: string;
+  email: string;
 };
 
-export default function CreateAuthorModal() {
+interface IUpdateAuthorModalProps {
+  id: string;
+}
+
+export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
   const [modal, setModal] = useState<boolean>(false);
-  const { getAuthors, addAuthor } = useAuthor();
+  const [currentAuthor, setAuthor] = useState<IAuthors>();
+  const { getAuthors, updateAuthor, authors } = useAuthor();
 
   const {
     register,
@@ -26,39 +33,42 @@ export default function CreateAuthorModal() {
   } = useForm<Inputs>({ resolver: yupResolver(createAuthorSchema) });
 
   const onSubmit: SubmitHandler<Inputs> = ({ name, email, description }) => {
-    const existAuthor = getAuthors().find(
-      (currentAuthors) => currentAuthors.name === name
-    );
+    const existAuthor = getAuthors().find((author) => author.name === name);
 
-    if (existAuthor) {
+    if (existAuthor && existAuthor.id !== id) {
       setError("name", {
-        message: "Author already exist",
+        message: "Book already exist",
       });
 
       return;
     }
 
-    addAuthor({
-      id: uuid(),
-      name,
-      email,
-      description,
-    });
-
-    setModal(!modal);
+    updateAuthor({ id, name, email, description });
+    setModal(false);
   };
+
+  useEffect(() => {
+    const findAuthor = getAuthors().find((author) => author.id === id);
+
+    if (!findAuthor) {
+      setModal(false);
+      return;
+    }
+
+    setAuthor(findAuthor);
+  }, [authors]);
 
   return (
     <Dialog.Root onOpenChange={setModal} open={modal}>
-      <Dialog.Trigger className="Button Button--medium">
-        Criar Autor
+      <Dialog.Trigger className="Button--yellow Button--small">
+        <Pencil1Icon />
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="ModalOverlay" />
         <Dialog.Content className="ModalContent">
-          <Dialog.Title className="Text--bold">Criar Autor</Dialog.Title>
+          <Dialog.Title className="Text--bold">Atualizar Autor</Dialog.Title>
           <Dialog.Description className="Text--small Text--secondary">
-            Adicione um novo autor na tabela
+            Atualize um autor na tabela
           </Dialog.Description>
           <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
@@ -72,6 +82,7 @@ export default function CreateAuthorModal() {
                 type="text"
                 className="ModalInput"
                 placeholder="Harry Potter"
+                defaultValue={currentAuthor?.name}
               />
 
               <ErrorMessage
@@ -91,6 +102,7 @@ export default function CreateAuthorModal() {
                 id="authorDescription"
                 className="ModalInput"
                 placeholder="Descrição do autor"
+                defaultValue={currentAuthor?.description}
               />
 
               <ErrorMessage
@@ -111,6 +123,7 @@ export default function CreateAuthorModal() {
                 type="text"
                 placeholder="example@email.com"
                 className="ModalInput"
+                defaultValue={currentAuthor?.email}
               />
 
               <ErrorMessage
@@ -121,7 +134,7 @@ export default function CreateAuthorModal() {
             </fieldset>
 
             <button type="submit" className="Button Button--medium">
-              Criar
+              Atualizar
             </button>
           </form>
         </Dialog.Content>

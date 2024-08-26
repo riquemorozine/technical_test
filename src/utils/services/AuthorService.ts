@@ -47,4 +47,24 @@ export class Author {
 
     return createAuthor;
   }
+
+  update(data: IAuthors): IAuthors[] | void {
+    const authors = this.authorStorage.getAuthors();
+    if (!authors) return;
+
+    const authorExist = authors.some(
+      (author: IAuthors) => author.id === data.id
+    );
+    if (!authorExist) return;
+
+    const updatedAuthors = authors.map((author: IAuthors) => {
+      if (author.id === data.id) {
+        return data;
+      }
+      return author;
+    });
+
+    this.authorStorage.updateAuthor(updatedAuthors);
+    return updatedAuthors;
+  }
 }

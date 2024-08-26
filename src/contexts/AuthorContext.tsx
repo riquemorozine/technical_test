@@ -10,6 +10,7 @@ export interface IAuthorContext {
   getAuthors: () => IAuthors[];
   deleteAuthor: (id: string) => void;
   addAuthor: (data: IAuthors) => void;
+  updateAuthor: (data: IAuthors) => void;
   getAuthorById: (id: string) => IAuthors | undefined;
 }
 
@@ -51,6 +52,15 @@ export const AuthorProvider: React.FC<AuthorProviderProps> = ({ children }) => {
     setAuthors(actualizedAuthors);
   };
 
+  const updateAuthor = (data: IAuthors): void => {
+    const author = new Author();
+
+    const actualizedAuthors = author.update(data);
+    if (!actualizedAuthors) return;
+
+    setAuthors(actualizedAuthors);
+  };
+
   const getAuthorById = (id: string): IAuthors | undefined => {
     return authors.find((author) => author.id === id);
   };
@@ -67,6 +77,7 @@ export const AuthorProvider: React.FC<AuthorProviderProps> = ({ children }) => {
         addAuthor,
         getAuthors,
         getAuthorById,
+        updateAuthor,
         authors,
       }}
     >

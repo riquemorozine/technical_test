@@ -1,0 +1,35 @@
+@import "../abstracts/variables", "../abstracts/mixins";
+
+.appbar {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100vw;
+  padding: 10px;
+  gap: 20px;
+
+  a {
+    text-decoration: none;
+    color: $darkGrey;
+  }
+
+  @include respond-to("medium") {
+    gap: 60px;
+  }
+}
+
+.appbarIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ff8b8b;
+  width: 50px;
+  padding: 10px;
+  border-radius: $borderRadius;
+  cursor: pointer;
+  font-size: 10px;
+  @include respond-to("medium") {
+    width: 100px;
+    font-size: 16px;
+  }
+}

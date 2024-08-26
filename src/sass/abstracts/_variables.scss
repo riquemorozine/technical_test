@@ -1,6 +1,7 @@
 $green: #4cea52;
 $darkGreen: rgb(27, 165, 89);
 $grey: #d5d5d6;
+$darkGrey: #636363;
 $black: rgb(27, 26, 26);
 $white: #ffffff;
 
@@ -28,5 +29,8 @@ $breakpoints: (
   ),
   "huge": (
     min-width: 1200px,
+  ),
+  "giant": (
+    min-width: 1400px,
   ),
 );

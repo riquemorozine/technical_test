@@ -10,8 +10,8 @@ interface IAuthorModalProps {
 
 export default function AuthorModal({ id }: IAuthorModalProps) {
   const [modal, setModal] = useState<boolean>(false);
-  const [author, setAuthor] = useState<IAuthors>();
-  const { getAuthorById } = useAuthor();
+  const [currentAuthor, setAuthor] = useState<IAuthors>();
+  const { getAuthorById, authors } = useAuthor();
 
   useEffect(() => {
     const findAuthor = getAuthorById(id);
@@ -22,7 +22,7 @@ export default function AuthorModal({ id }: IAuthorModalProps) {
     }
 
     setAuthor(findAuthor);
-  }, []);
+  }, [authors]);
 
   return (
     <>
@@ -33,13 +33,20 @@ export default function AuthorModal({ id }: IAuthorModalProps) {
         <Dialog.Portal>
           <Dialog.Overlay className="ModalOverlay" />
           <Dialog.Content className="ModalContent">
-            <Dialog.Title className="Text--bold">{author?.name}</Dialog.Title>
-            <Dialog.Description className="Text--medium">
-              Email
+            <Dialog.Title className="Text--bold">
+              {currentAuthor?.name}
+            </Dialog.Title>
+            <Dialog.Description className="Text--medium modalDescription">
+              {currentAuthor?.description}
             </Dialog.Description>
-            <p className="Text--small Text--secondary">
-              {author?.email === "" ? "Email not found" : author?.email}
-            </p>
+            <div className="ModalDetails">
+              <p className="Text--medium">Email</p>
+              <p className="Text--small Text--secondary">
+                {currentAuthor?.email === ""
+                  ? "Email not found"
+                  : currentAuthor?.email}
+              </p>
+            </div>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
