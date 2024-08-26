@@ -23,14 +23,8 @@ main {
 
   .tables {
     width: 100%;
-    height: 400px;
+    height: 600px;
     overflow-x: hidden;
     overflow-y: scroll;
-  }
-
-  @include respond-to("medium") {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 0.2fr);
   }
 }

@@ -29,6 +29,7 @@
     @include respond-to("medium") {
       td,
       th {
+        width: 570px;
         max-width: 600px;
       }
     }
@@ -37,6 +38,7 @@
       td,
       th {
         padding: 10px 100px;
+        width: 570px;
         max-width: 800px;
       }
     }

@@ -5,12 +5,16 @@
   align-items: center;
   justify-content: start;
   width: 100vw;
-  gap: 60px;
   padding: 10px;
+  gap: 20px;
 
   a {
     text-decoration: none;
-    color: $black;
+    color: $darkGrey;
+  }
+
+  @include respond-to("medium") {
+    gap: 60px;
   }
 }
 
@@ -18,9 +22,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 7%;
   background: #ff8b8b;
+  width: 50px;
   padding: 10px;
   border-radius: $borderRadius;
   cursor: pointer;
+  font-size: 10px;
+  @include respond-to("medium") {
+    width: 100px;
+    font-size: 16px;
+  }
 }
