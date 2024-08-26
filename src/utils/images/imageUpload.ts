@@ -14,5 +14,5 @@ export async function ImageUpload(image: File): Promise<string> {
 
   const response = await imageFetch.json();
 
-  return response.data.url;
+  return response.data.link;
 }
