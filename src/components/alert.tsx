@@ -9,13 +9,19 @@ interface AlertProps {
 }
 
 export default function Alert({ id, type }: AlertProps) {
-  const { deleteBook } = useBook();
+  const { deleteBook, getBooks } = useBook();
   const { deleteAuthor } = useAuthor();
 
   const handleDelete = () => {
     if (type === "Books") {
       deleteBook(id);
     }
+
+    const authorBooks = getBooks().filter((book) => book.author_id === id);
+
+    authorBooks.forEach(({ id }) => {
+      deleteBook(id);
+    });
 
     deleteAuthor(id);
   };
@@ -32,8 +38,9 @@ export default function Alert({ id, type }: AlertProps) {
             Você tem certeza?
           </AlertDialog.Title>
           <AlertDialog.Description className="Text--small Text--secondary">
-            Você realmente deseja excluir este item? <br /> Este processo não
-            pode ser desfeito.
+            {type === "Books"
+              ? "Você realmente deseja excluir este livro?"
+              : "Você realmente deseja excluir este autor? ao deletar o autor todos os livros associados a ele serão excluidos permanentemente"}
           </AlertDialog.Description>
           <div className="AlertDialogButtons">
             <AlertDialog.Action asChild>
