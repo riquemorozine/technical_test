@@ -23,6 +23,7 @@ type Inputs = {
   name: string;
   author: string;
   description: string;
+  image: any;
   pages: number;
 };
 

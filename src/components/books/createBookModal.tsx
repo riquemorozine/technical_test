@@ -19,6 +19,7 @@ type Inputs = {
   author: string;
   description: string;
   pages: number;
+  image: any;
 };
 
 export default function CreateBookModal() {
@@ -34,11 +35,12 @@ export default function CreateBookModal() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createBookSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = ({
+  const onSubmit: SubmitHandler<Inputs> = async ({
     author,
     name,
     pages,
     description,
+    image,
   }) => {
     const existAuthor = getAuthors().find(
       (currentAuthors) => currentAuthors.id === author
@@ -59,6 +61,23 @@ export default function CreateBookModal() {
         message: "Book already exist",
       });
     }
+
+    const formData = new FormData();
+
+    formData.append("image", image[0]);
+
+    const imageFetch = await fetch("https://api.imgur.com/3/image/", {
+      method: "POST",
+      headers: {
+        Authorization: "Client-ID 9b048ed3692bfd0",
+        Accept: "application/json",
+      },
+      body: formData,
+    });
+
+    const response = await imageFetch.json();
+
+    console.log(response);
 
     addBook({
       id: uuid(),
@@ -119,6 +138,20 @@ export default function CreateBookModal() {
               <ErrorMessage
                 errors={errors}
                 name="description"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor="bookImage" className="Text--small">
+                Imagem
+              </label>
+
+              <input {...register("image")} type="file" accept=".jpg, .png" />
+
+              <ErrorMessage
+                errors={errors}
+                name="bookImage"
                 render={({ message }) => <p>{message}</p>}
               />
             </fieldset>

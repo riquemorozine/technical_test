@@ -36,9 +36,13 @@ export default function BookModal({ id }: BookModalProps) {
           <Dialog.Title className="Text--bold">
             {currentBook?.name}
           </Dialog.Title>
-          <Dialog.Description className="Text--medium modalDescription">
+          <Dialog.Description className="modalDescription Text--medium ">
             {currentBook?.description}
           </Dialog.Description>
+          <div className="modalBody">
+            <img src="/image.jpg" alt="" />
+          </div>
+
           <div className="ModalDetails">
             <p className="Text--medium">Autor</p>
             <p className="Text--small Text--secondary">
@@ -46,6 +50,7 @@ export default function BookModal({ id }: BookModalProps) {
                 getAuthorById(currentBook.author_id)?.name}
             </p>
           </div>
+
           <div className="ModalDetails">
             <p className="Text--medium">Total de Paginas</p>
             <p className="Text--small Text--secondary">{currentBook?.pages}</p>

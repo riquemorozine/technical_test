@@ -17,7 +17,11 @@
   }
 
   &--medium {
-    @include text-size(16px, 500);
+    @include text-size(12px, 500);
+
+    @include respond-to("medium") {
+      @include text-size(16px, 500);
+    }
   }
 
   &--large {
