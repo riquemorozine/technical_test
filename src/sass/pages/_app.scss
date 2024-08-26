@@ -8,11 +8,6 @@ main {
   flex-direction: column;
   margin-top: 100px;
   gap: 20px;
-
-  @include respond-to("medium") {
-    margin-top: 0px;
-    justify-content: center;
-  }
 }
 
 .tablesContainer {

@@ -9,8 +9,8 @@ export default function Authors() {
   return (
     <main>
       <PageDescription
-        title="Livros"
-        description="Visualize a lista de livros, crie ou modifique os livros"
+        title="Autores"
+        description="Visualize a lista de autores, crie ou modifique os autores"
       />
 
       <div className="tables">

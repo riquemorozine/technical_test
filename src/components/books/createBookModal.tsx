@@ -17,6 +17,7 @@ import Select from "../select";
 type Inputs = {
   name: string;
   author: string;
+  description: string;
   pages: number;
 };
 
@@ -33,7 +34,12 @@ export default function CreateBookModal() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createBookSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = ({ author, name, pages }) => {
+  const onSubmit: SubmitHandler<Inputs> = ({
+    author,
+    name,
+    pages,
+    description,
+  }) => {
     const existAuthor = getAuthors().find(
       (currentAuthors) => currentAuthors.id === author
     );
@@ -54,8 +60,11 @@ export default function CreateBookModal() {
       });
     }
 
+    console.log(description);
+
     addBook({
       id: uuid(),
+      description,
       author_id: author,
       name,
       pages,
@@ -93,6 +102,25 @@ export default function CreateBookModal() {
               <ErrorMessage
                 errors={errors}
                 name="name"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor="bookDescription" className="Text--small">
+                Descrição
+              </label>
+
+              <textarea
+                {...register("description")}
+                id="bookDescription"
+                className="ModalInput"
+                placeholder="Um livro sobre magia"
+              />
+
+              <ErrorMessage
+                errors={errors}
+                name="description"
                 render={({ message }) => <p>{message}</p>}
               />
             </fieldset>
