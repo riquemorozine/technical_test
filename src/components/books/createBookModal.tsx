@@ -13,6 +13,7 @@ import { useBook } from "../../contexts/BookContext";
 import { createBookSchema } from "../../utils/validators/createBookValidator";
 
 import Select from "../select";
+import { ImageUpload } from "../../utils/images/imageUpload";
 
 type Inputs = {
   name: string;
@@ -62,26 +63,12 @@ export default function CreateBookModal() {
       });
     }
 
-    const formData = new FormData();
-
-    formData.append("image", image[0]);
-
-    const imageFetch = await fetch("https://api.imgur.com/3/image/", {
-      method: "POST",
-      headers: {
-        Authorization: "Client-ID 9b048ed3692bfd0",
-        Accept: "application/json",
-      },
-      body: formData,
-    });
-
-    const response = await imageFetch.json();
-
-    console.log(response);
+    const imageUrl = await ImageUpload(image[0]);
 
     addBook({
       id: uuid(),
       description,
+      image: imageUrl,
       author_id: author,
       name,
       pages,

@@ -14,6 +14,7 @@ import { useBook } from "../../contexts/BookContext";
 import { createBookSchema } from "../../utils/validators/createBookValidator";
 
 import Select from "../select";
+import { ImageUpload } from "../../utils/images/imageUpload";
 
 interface IUpdateBookModalProps {
   id: string;
@@ -53,7 +54,13 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
     setBook(findBook);
   }, []);
 
-  const onSubmit = ({ author, description, name, pages }: Inputs) => {
+  const onSubmit = async ({
+    author,
+    description,
+    name,
+    pages,
+    image,
+  }: Inputs) => {
     const existBook = getBooks().find((book) => book.name === name);
 
     if (existBook && existBook?.id !== id) {
@@ -64,7 +71,16 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
       return;
     }
 
-    updateBook({ id, author_id: author, description, name, pages });
+    const imageURL = await ImageUpload(image[0]);
+
+    updateBook({
+      id,
+      author_id: author,
+      image: imageURL,
+      description,
+      name,
+      pages,
+    });
     setModal(false);
   };
 

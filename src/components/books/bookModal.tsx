@@ -40,7 +40,7 @@ export default function BookModal({ id }: BookModalProps) {
             {currentBook?.description}
           </Dialog.Description>
           <div className="modalBody">
-            <img src="/image.jpg" alt="" />
+            <img src={currentBook?.image} alt="" />
           </div>
 
           <div className="ModalDetails">
