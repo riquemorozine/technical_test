@@ -21,8 +21,8 @@ interface IUpdateAuthorModalProps {
 
 export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
   const [modal, setModal] = useState<boolean>(false);
-  const [author, setAuthor] = useState<IAuthors>();
-  const { getAuthors, updateAuthor } = useAuthor();
+  const [currentAuthor, setAuthor] = useState<IAuthors>();
+  const { getAuthors, updateAuthor, authors } = useAuthor();
 
   const {
     register,
@@ -32,13 +32,13 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
   } = useForm<Inputs>({ resolver: yupResolver(createAuthorSchema) });
 
   const onSubmit: SubmitHandler<Inputs> = ({ name, email }) => {
-    const existAuthor = getAuthors().find(
-      (currentAuthors) => currentAuthors.name === name
-    );
+    const existAuthor = getAuthors().find((author) => author.name === name);
 
-    if (existAuthor?.id !== id) {
+    console.log(existAuthor);
+
+    if (existAuthor && existAuthor.id !== id) {
       setError("name", {
-        message: "Author already exist",
+        message: "Book already exist",
       });
 
       return;
@@ -57,7 +57,7 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
     }
 
     setAuthor(findAuthor);
-  }, []);
+  }, [authors]);
 
   return (
     <Dialog.Root onOpenChange={setModal} open={modal}>
@@ -83,7 +83,7 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
                 type="text"
                 className="ModalInput"
                 placeholder="Harry Potter"
-                defaultValue={author?.name}
+                defaultValue={currentAuthor?.name}
               />
 
               <ErrorMessage
@@ -104,7 +104,7 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
                 type="text"
                 placeholder="example@email.com"
                 className="ModalInput"
-                defaultValue={author?.email}
+                defaultValue={currentAuthor?.email}
               />
 
               <ErrorMessage

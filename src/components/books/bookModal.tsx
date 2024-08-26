@@ -10,8 +10,8 @@ interface BookModalProps {
 
 export default function BookModal({ id }: BookModalProps) {
   const [modal, setModal] = useState<boolean>(false);
-  const [book, setBook] = useState<IBook>();
-  const { getBookById } = useBook();
+  const [currentBook, setBook] = useState<IBook>();
+  const { getBookById, books } = useBook();
   const { getAuthorById } = useAuthor();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function BookModal({ id }: BookModalProps) {
     }
 
     setBook(findBook);
-  }, []);
+  }, [books]);
 
   return (
     <Dialog.Root onOpenChange={setModal} open={modal}>
@@ -33,19 +33,22 @@ export default function BookModal({ id }: BookModalProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="ModalOverlay" />
         <Dialog.Content className="ModalContent">
-          <Dialog.Title className="Text--bold">{book?.name}</Dialog.Title>
+          <Dialog.Title className="Text--bold">
+            {currentBook?.name}
+          </Dialog.Title>
           <Dialog.Description className="Text--medium modalDescription">
-            {book?.description}
+            {currentBook?.description}
           </Dialog.Description>
           <div className="ModalDetails">
             <p className="Text--medium">Autor</p>
             <p className="Text--small Text--secondary">
-              {book?.author_id && getAuthorById(book.author_id)?.name}
+              {currentBook?.author_id &&
+                getAuthorById(currentBook.author_id)?.name}
             </p>
           </div>
           <div className="ModalDetails">
             <p className="Text--medium">Total de Paginas</p>
-            <p className="Text--small Text--secondary">{book?.pages}</p>
+            <p className="Text--small Text--secondary">{currentBook?.pages}</p>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

@@ -53,11 +53,9 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
   }, []);
 
   const onSubmit = ({ author, description, name, pages }: Inputs) => {
-    const existAuthor = getBooks().find(
-      (currentBooks) => currentBooks.name === name
-    );
+    const existBook = getBooks().find((book) => book.name === name);
 
-    if (existAuthor?.id !== id) {
+    if (existBook && existBook?.id !== id) {
       setError("name", {
         message: "Book already exist",
       });
@@ -77,9 +75,11 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="ModalOverlay" />
         <Dialog.Content className="ModalContent">
-          <Dialog.Title className="Text--bold">Criação de Livro</Dialog.Title>
+          <Dialog.Title className="Text--bold">
+            Atualização de Livro
+          </Dialog.Title>
           <Dialog.Description className="Text--small Text--secondary">
-            Adicione livros na tabela
+            Atualize dados de livros na tabela
           </Dialog.Description>
           <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
@@ -164,7 +164,7 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
             </fieldset>
 
             <button type="submit" className="Button Button--medium">
-              Criar
+              Atualizar
             </button>
           </form>
         </Dialog.Content>
