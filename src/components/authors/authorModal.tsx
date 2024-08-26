@@ -1,5 +1,5 @@
-import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 
 import { useAuthor } from "../../contexts/AuthorContext";
 import { IAuthors } from "../../domains/IAuthors";

@@ -46,6 +46,7 @@ export default function CreateBookModal() {
     const existAuthor = getAuthors().find(
       (currentAuthors) => currentAuthors.id === author
     );
+    let imageUrl;
 
     if (!existAuthor) {
       setError("author", {
@@ -63,12 +64,14 @@ export default function CreateBookModal() {
       });
     }
 
-    const imageUrl = await ImageUpload(image[0]);
+    if (image.length > 0) {
+      imageUrl = await ImageUpload(image[0]);
+    }
 
     addBook({
       id: uuid(),
       description,
-      image: imageUrl,
+      image: imageUrl ? imageUrl : "",
       author_id: author,
       name,
       pages,

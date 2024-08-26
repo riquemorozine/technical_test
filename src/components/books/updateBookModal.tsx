@@ -62,6 +62,7 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
     image,
   }: Inputs) => {
     const existBook = getBooks().find((book) => book.name === name);
+    let imageURL;
 
     if (existBook && existBook?.id !== id) {
       setError("name", {
@@ -71,12 +72,14 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
       return;
     }
 
-    const imageURL = await ImageUpload(image[0]);
+    if (image.length > 0) {
+      imageURL = await ImageUpload(image[0]);
+    }
 
     updateBook({
       id,
       author_id: author,
-      image: imageURL,
+      image: imageURL ? imageURL : "",
       description,
       name,
       pages,

@@ -1,7 +1,9 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
-import { useBook } from "../../contexts/BookContext";
+
 import { IBook } from "../../domains/IBook";
+
+import { useBook } from "../../contexts/BookContext";
 import { useAuthor } from "../../contexts/AuthorContext";
 
 interface BookModalProps {
