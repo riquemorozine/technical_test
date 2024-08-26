@@ -1,29 +1,18 @@
-import Table from "./components/table";
-import CreateBookModal from "./components/books/createBookModal";
-import CreateAuthorModal from "./components/authors/createAuthorModal";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { useBook } from "./contexts/BookContext";
-import { useAuthor } from "./contexts/AuthorContext";
+import Books from "./pages/books";
+import Authors from "./pages/authors";
+import Appbar from "./components/appbar";
 
 function App() {
-  const { books } = useBook();
-  const { authors } = useAuthor();
-
   return (
-    <main>
-      <div className="justifyButtons"></div>
-      <div className="tablesContainer">
-        <CreateBookModal />
-        <div className="tables">
-          <Table type="Books" data={books} headers={["Book Name"]} />
-        </div>
-
-        <CreateAuthorModal />
-        <div className="tables">
-          <Table type="Authors" data={authors} headers={["Author"]} />
-        </div>
-      </div>
-    </main>
+    <BrowserRouter>
+      <Appbar />
+      <Routes>
+        <Route path="/" element={<Books />} />
+        <Route path="/autores" element={<Authors />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
