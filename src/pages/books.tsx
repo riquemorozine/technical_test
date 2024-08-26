@@ -8,6 +8,7 @@ export default function Books() {
   return (
     <main>
       <PageDescription
+        type="Books"
         title="Livros"
         description="Visualize a lista de livros, crie ou modifique os livros"
       />

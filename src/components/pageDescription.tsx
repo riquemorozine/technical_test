@@ -1,13 +1,16 @@
+import CreateAuthorModal from "./authors/createAuthorModal";
 import CreateBookModal from "./books/createBookModal";
 
 interface IPageDescriptionProps {
   title: string;
   description: string;
+  type: "Books" | "Authors";
 }
 
 export default function PageDescription({
   title,
   description,
+  type,
 }: IPageDescriptionProps) {
   return (
     <div className="pageDescriptionContainer">
@@ -16,7 +19,7 @@ export default function PageDescription({
         <p className="Text Text--medium">{description}</p>
       </div>
 
-      <CreateBookModal />
+      {type === "Books" ? <CreateBookModal /> : <CreateAuthorModal />}
     </div>
   );
 }

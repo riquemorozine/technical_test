@@ -9,6 +9,7 @@ export default function Authors() {
   return (
     <main>
       <PageDescription
+        type="Authors"
         title="Autores"
         description="Visualize a lista de autores, crie ou modifique os autores"
       />

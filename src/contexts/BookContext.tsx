@@ -11,6 +11,7 @@ export interface IBookContext {
   deleteBook: (id: string) => void;
   addBook: (data: IBook) => void;
   getAllBooksFromAuthor: (id: string) => IBook[] | null;
+  updateBook: (data: IBook) => void;
   getBookById: (id: string) => IBook | null;
 }
 
@@ -52,6 +53,15 @@ export const BookProvider: React.FC<BookProviderProps> = ({ children }) => {
     setBook(actualizedBooks);
   };
 
+  const updateBook = (data: IBook): void => {
+    const book = new Book();
+
+    const actualizedBooks = book.update(data);
+    if (!actualizedBooks) return;
+
+    setBook(actualizedBooks);
+  };
+
   const getAllBooksFromAuthor = (id: string): IBook[] | null => {
     const book = new Book();
 
@@ -81,6 +91,7 @@ export const BookProvider: React.FC<BookProviderProps> = ({ children }) => {
         deleteBook,
         addBook,
         getAllBooksFromAuthor,
+        updateBook,
         getBookById,
       }}
     >
