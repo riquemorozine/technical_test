@@ -1,4 +1,5 @@
 @import "../abstracts/variables";
+@import "../themes/colors";
 
 .ModalOverlay {
   background-color: $overlayColor;
@@ -35,7 +36,7 @@
 
       p {
         font-size: 13px;
-        color: red;
+        color: $warningTextColor;
       }
     }
   }

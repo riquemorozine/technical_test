@@ -1,4 +1,5 @@
 @import "../abstracts/variables";
+@import "../themes/colors";
 @import "../abstracts/mixins";
 
 .tableContainer {
@@ -12,11 +13,13 @@
 
     th,
     td {
+      border: 1px solid $black;
       padding: 4px;
       max-width: 200px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: $primaryTextColor;
     }
 
     tr:nth-child(even) {
@@ -33,7 +36,7 @@
     @include respond-to("large") {
       td,
       th {
-        padding: 10px 50px;
+        padding: 10px 100px;
         max-width: 800px;
       }
     }

@@ -99,7 +99,9 @@ export default function CreateAuthorModal() {
               />
             </fieldset>
 
-            <button type="submit" className="Button Button--medium"></button>
+            <button type="submit" className="Button Button--medium">
+              Criar
+            </button>
           </form>
         </Dialog.Content>
       </Dialog.Portal>

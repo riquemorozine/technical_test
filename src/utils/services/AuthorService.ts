@@ -1,5 +1,6 @@
 import { IAuthors } from "../../domains/IAuthors";
 import { AuthorStorage } from "../storages/AuthorStorage";
+import { defaultAuthors } from "./defaultTable";
 
 export class Author {
   private authorStorage: AuthorStorage;
@@ -12,14 +13,8 @@ export class Author {
     const authors = this.authorStorage.getAuthors();
 
     if (!authors) {
-      const exampleAuthor = {
-        id: "1",
-        name: "Example Author",
-        email: "example@email.com",
-      };
-
-      this.authorStorage.updateAuthor([exampleAuthor]);
-      return [exampleAuthor];
+      this.authorStorage.updateAuthor(defaultAuthors);
+      return defaultAuthors;
     }
 
     return authors;
@@ -40,7 +35,6 @@ export class Author {
 
   add(data: IAuthors): IAuthors[] | void {
     const authors = this.authorStorage.getAuthors();
-
     if (!authors) return;
 
     const isDuplicate = authors.some(

@@ -14,7 +14,7 @@ button {
   line-height: 1;
   height: 35px;
   gap: 5px;
-  background-color: white;
+  background-color: $white;
   color: $black;
   border: 1px solid $black;
 
@@ -33,7 +33,7 @@ button {
 
 .SelectContent {
   overflow: hidden;
-  background-color: white;
+  background-color: $white;
   border-radius: 6px;
   box-shadow: $selectShadow;
 }
@@ -62,7 +62,7 @@ button {
 
   &[data-highlighted] {
     outline: none;
-    background-color: rgb(216, 216, 216);
+    background-color: $grey;
     color: $darkGreen;
   }
 }
@@ -71,7 +71,7 @@ button {
   padding: 0 25px;
   font-size: 12px;
   line-height: 25px;
-  color: rgb(116, 119, 118);
+  color: $grey;
 }
 
 .SelectSeparator {
@@ -94,7 +94,7 @@ button {
   align-items: center;
   justify-content: center;
   height: 25px;
-  background-color: white;
+  background-color: $white;
   color: $green;
   cursor: default;
 }

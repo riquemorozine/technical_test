@@ -1,5 +1,6 @@
 import { IBook } from "../../domains/IBook";
 import { BookStorage } from "../storages/BookStorage";
+import { defaultBooks } from "./defaultTable";
 
 export class Book {
   private bookStorage: BookStorage;
@@ -12,15 +13,8 @@ export class Book {
     const books = this.bookStorage.getBooks();
 
     if (!books) {
-      const exampleBook = {
-        author_id: "1",
-        id: "1",
-        name: "example book",
-        pages: 12,
-      };
-
-      this.bookStorage.updateBooks([exampleBook]);
-      return [exampleBook];
+      this.bookStorage.updateBooks(defaultBooks);
+      return defaultBooks;
     }
 
     return books;
@@ -41,7 +35,6 @@ export class Book {
 
   add(data: IBook): IBook[] | void {
     const books = this.bookStorage.getBooks();
-
     if (!books) return;
 
     const isDuplicate = books.some(
@@ -58,7 +51,6 @@ export class Book {
 
   getAllBooksFromAuthor(id: string): IBook[] | null {
     const books = this.bookStorage.getBooks();
-
     if (!books) return null;
 
     const findBooks = books.filter((book) => book.author_id === id);
