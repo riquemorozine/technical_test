@@ -14,6 +14,7 @@ import { useBook } from "../../contexts/BookContext";
 import { createBookSchema } from "../../utils/validators/createBookValidator";
 
 import Select from "../select";
+import { ImageUpload } from "../../utils/images/imageUpload";
 
 interface IUpdateBookModalProps {
   id: string;
@@ -23,6 +24,7 @@ type Inputs = {
   name: string;
   author: string;
   description: string;
+  image: any;
   pages: number;
 };
 
@@ -52,8 +54,15 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
     setBook(findBook);
   }, []);
 
-  const onSubmit = ({ author, description, name, pages }: Inputs) => {
+  const onSubmit = async ({
+    author,
+    description,
+    name,
+    pages,
+    image,
+  }: Inputs) => {
     const existBook = getBooks().find((book) => book.name === name);
+    let imageURL;
 
     if (existBook && existBook?.id !== id) {
       setError("name", {
@@ -63,7 +72,18 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
       return;
     }
 
-    updateBook({ id, author_id: author, description, name, pages });
+    if (image.length > 0) {
+      imageURL = await ImageUpload(image[0]);
+    }
+
+    updateBook({
+      id,
+      author_id: author,
+      image: imageURL ? imageURL : "",
+      description,
+      name,
+      pages,
+    });
     setModal(false);
   };
 
@@ -119,6 +139,20 @@ export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
               <ErrorMessage
                 errors={errors}
                 name="description"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor="bookImage" className="Text--small">
+                Imagem
+              </label>
+
+              <input {...register("image")} type="file" accept=".jpg, .png" />
+
+              <ErrorMessage
+                errors={errors}
+                name="bookImage"
                 render={({ message }) => <p>{message}</p>}
               />
             </fieldset>

@@ -13,12 +13,14 @@ import { useBook } from "../../contexts/BookContext";
 import { createBookSchema } from "../../utils/validators/createBookValidator";
 
 import Select from "../select";
+import { ImageUpload } from "../../utils/images/imageUpload";
 
 type Inputs = {
   name: string;
   author: string;
   description: string;
   pages: number;
+  image: any;
 };
 
 export default function CreateBookModal() {
@@ -34,15 +36,17 @@ export default function CreateBookModal() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createBookSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = ({
+  const onSubmit: SubmitHandler<Inputs> = async ({
     author,
     name,
     pages,
     description,
+    image,
   }) => {
     const existAuthor = getAuthors().find(
       (currentAuthors) => currentAuthors.id === author
     );
+    let imageUrl;
 
     if (!existAuthor) {
       setError("author", {
@@ -60,9 +64,14 @@ export default function CreateBookModal() {
       });
     }
 
+    if (image.length > 0) {
+      imageUrl = await ImageUpload(image[0]);
+    }
+
     addBook({
       id: uuid(),
       description,
+      image: imageUrl ? imageUrl : "",
       author_id: author,
       name,
       pages,
@@ -124,6 +133,20 @@ export default function CreateBookModal() {
             </fieldset>
 
             <fieldset>
+              <label htmlFor="bookImage" className="Text--small">
+                Imagem
+              </label>
+
+              <input {...register("image")} type="file" accept=".jpg, .png" />
+
+              <ErrorMessage
+                errors={errors}
+                name="bookImage"
+                render={({ message }) => <p>{message}</p>}
+              />
+            </fieldset>
+
+            <fieldset>
               <label htmlFor="author" className="Text--small">
                 Autor*
               </label>
@@ -133,10 +156,7 @@ export default function CreateBookModal() {
                 onValueChange={(value) => setValue("author", value)}
               />
 
-              <input
-                type="hidden"
-                {...register("author", { required: "Author is required" })}
-              />
+              <input type="hidden" {...register("author")} />
 
               <ErrorMessage
                 errors={errors}

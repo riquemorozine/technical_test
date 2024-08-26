@@ -4,6 +4,7 @@ export const createBookSchema = yup
   .object({
     name: yup.string().required("Nome é obrigatório"),
     author: yup.string().required("Autor é obrigatório"),
+    image: yup.mixed().default(null),
     description: yup
       .string()
       .optional()

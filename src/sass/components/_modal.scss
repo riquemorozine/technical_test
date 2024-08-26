@@ -8,8 +8,8 @@
 }
 
 .ModalContent {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(5, auto);
   gap: 20px;
 
   background-color: white;
@@ -40,6 +40,13 @@
       }
     }
   }
+
+  img {
+    border-radius: $borderRadius;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .ModalInput {
@@ -52,12 +59,13 @@
 }
 
 .modalDescription {
-  font-size: 13px;
+  font-size: 10px;
   color: $darkGrey;
   word-wrap: break-word;
-  width: 320px;
+  grid-row: 2;
 
   @include respond-to("medium") {
+    font-size: 14px;
     width: 460px;
     max-width: 600px;
   }
