@@ -33,6 +33,7 @@ export default function Selector({ data, onValueChange }: SelectorProps) {
           <Select.ScrollUpButton className="SelectScrollButton">
             <ChevronUpIcon />
           </Select.ScrollUpButton>
+
           <Select.Viewport className="SelectViewport">
             <Select.Group>
               <Select.Label className="SelectLabel">Autores</Select.Label>

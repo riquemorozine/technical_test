@@ -48,7 +48,7 @@ export default function CreateAuthorModal() {
 
   return (
     <Dialog.Root onOpenChange={setModal} open={modal}>
-      <Dialog.Trigger className="Button Button--medium" style={{ gridArea: 1 }}>
+      <Dialog.Trigger className="Button Button--medium">
         Criar Autor
       </Dialog.Trigger>
       <Dialog.Portal>

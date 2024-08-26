@@ -1,13 +1,14 @@
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Pencil1Icon } from "@radix-ui/react-icons";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { ErrorMessage } from "@hookform/error-message";
-import { useEffect, useState } from "react";
-import { useAuthor } from "../../contexts/AuthorContext";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import { createAuthorSchema } from "../../utils/validators/createAuthorValidator";
+import { useAuthor } from "../../contexts/AuthorContext";
 import { IAuthors } from "../../domains/IAuthors";
-import { Pencil1Icon } from "@radix-ui/react-icons";
 
 type Inputs = {
   name: string;
@@ -31,11 +32,11 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
   } = useForm<Inputs>({ resolver: yupResolver(createAuthorSchema) });
 
   const onSubmit: SubmitHandler<Inputs> = ({ name, email }) => {
-    const existAuthor = getAuthors().some(
+    const existAuthor = getAuthors().find(
       (currentAuthors) => currentAuthors.name === name
     );
 
-    if (existAuthor) {
+    if (existAuthor?.id !== id) {
       setError("name", {
         message: "Author already exist",
       });
@@ -60,10 +61,7 @@ export function UpdateAuthorModal({ id }: IUpdateAuthorModalProps) {
 
   return (
     <Dialog.Root onOpenChange={setModal} open={modal}>
-      <Dialog.Trigger
-        className="Button--yellow Button--small"
-        style={{ gridArea: 1 }}
-      >
+      <Dialog.Trigger className="Button--yellow Button--small">
         <Pencil1Icon />
       </Dialog.Trigger>
       <Dialog.Portal>

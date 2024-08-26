@@ -2,6 +2,7 @@ import BookModal from "./books/bookModal";
 import AuthorModal from "./authors/authorModal";
 import Alert from "./alert";
 import { UpdateAuthorModal } from "./authors/updateAuthorModal";
+import UpdateBookModal from "./books/updateBookModal";
 
 interface IData {
   id: string;
@@ -32,6 +33,7 @@ export default function Table({ data, type }: ITableProps) {
                 {type === "Books" ? (
                   <div className="tableButtons">
                     <BookModal id={id} />
+                    <UpdateBookModal id={id} />
                     <Alert type="Books" id={id} />
                   </div>
                 ) : (

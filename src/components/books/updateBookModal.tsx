@@ -1,18 +1,23 @@
-import { useState } from "react";
-import { v4 as uuid } from "uuid";
+import { useEffect, useState } from "react";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import { Pencil1Icon } from "@radix-ui/react-icons";
 
+import { IBook } from "../../domains/IBook";
 import { useAuthor } from "../../contexts/AuthorContext";
 import { useBook } from "../../contexts/BookContext";
 
 import { createBookSchema } from "../../utils/validators/createBookValidator";
 
 import Select from "../select";
+
+interface IUpdateBookModalProps {
+  id: string;
+}
 
 type Inputs = {
   name: string;
@@ -21,10 +26,12 @@ type Inputs = {
   pages: number;
 };
 
-export default function CreateBookModal() {
+export default function UpdateBookModal({ id }: IUpdateBookModalProps) {
+  const [modal, setModal] = useState(false);
+  const [book, setBook] = useState<IBook>();
+
   const { getAuthors } = useAuthor();
-  const { addBook, getBooks } = useBook();
-  const [modal, setModal] = useState<boolean>(false);
+  const { getBooks, updateBook } = useBook();
 
   const {
     register,
@@ -34,49 +41,38 @@ export default function CreateBookModal() {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(createBookSchema) });
 
-  const onSubmit: SubmitHandler<Inputs> = ({
-    author,
-    name,
-    pages,
-    description,
-  }) => {
-    const existAuthor = getAuthors().find(
-      (currentAuthors) => currentAuthors.id === author
-    );
+  useEffect(() => {
+    const findBook = getBooks().find((book) => book.id === id);
 
-    if (!existAuthor) {
-      setError("author", {
-        message: "Author doesn't exist",
-      });
+    if (!findBook) {
+      setModal(false);
+      return;
     }
 
-    const bookExist = getBooks().find(
-      (book) => book.name === name && book.author_id === author
+    setBook(findBook);
+  }, []);
+
+  const onSubmit = ({ author, description, name, pages }: Inputs) => {
+    const existAuthor = getBooks().find(
+      (currentBooks) => currentBooks.name === name
     );
 
-    if (bookExist) {
+    if (existAuthor?.id !== id) {
       setError("name", {
         message: "Book already exist",
       });
+
+      return;
     }
 
-    console.log(description);
-
-    addBook({
-      id: uuid(),
-      description,
-      author_id: author,
-      name,
-      pages,
-    });
-
-    setModal(!modal);
+    updateBook({ id, author_id: author, description, name, pages });
+    setModal(false);
   };
 
   return (
     <Dialog.Root onOpenChange={setModal} open={modal}>
-      <Dialog.Trigger className="Button Button--medium">
-        Criar Livro
+      <Dialog.Trigger className="Button--yellow Button--small">
+        <Pencil1Icon />
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="ModalOverlay" />
@@ -97,6 +93,7 @@ export default function CreateBookModal() {
                 type="text"
                 className="ModalInput"
                 placeholder="Harry Potter"
+                defaultValue={book?.name}
               />
 
               <ErrorMessage
@@ -116,6 +113,7 @@ export default function CreateBookModal() {
                 id="bookDescription"
                 className="ModalInput"
                 placeholder="Um livro sobre magia"
+                defaultValue={book?.description}
               />
 
               <ErrorMessage
@@ -135,10 +133,7 @@ export default function CreateBookModal() {
                 onValueChange={(value) => setValue("author", value)}
               />
 
-              <input
-                type="hidden"
-                {...register("author", { required: "Author is required" })}
-              />
+              <input type="hidden" {...register("author")} />
 
               <ErrorMessage
                 errors={errors}
@@ -158,6 +153,7 @@ export default function CreateBookModal() {
                 type="text"
                 placeholder="139"
                 className="ModalInput"
+                defaultValue={book?.pages}
               />
 
               <ErrorMessage
